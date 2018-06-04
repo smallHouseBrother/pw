@@ -20,17 +20,27 @@
 #define IsDebug NO
 #endif
 
-#define Base_Url       @"http://xykapi.jrweid.com"
+///谷歌广告 正式id
+#define AdMobId  @"ca-app-pub-3370442864980896~7200670155"
+///banner
+#define PWBannerAd @"ca-app-pub-3370442864980896/4473777926"
+#define PWDetailAd @"ca-app-pub-3370442864980896/8214546537"
+///插页
+#define FullPageAd @"ca-app-pub-3370442864980896/6350800527"
 
-#define AMAP_KEY       @"3769470b98b62ebdf62c0bb315cb5c52"
 
-#define Jpush_Key      @"42320071263f56ec3ad00c16"
-#define Jpush_Secret   @"339da4eb647af531bc5a7c48"
+
+///banner测试id
+#define textId @"ca-app-pub-3940256099942544/2934735716"
+///插页测试id
+#define chaPageId @"ca-app-pub-3940256099942544/4411468910"
+
+
+
 
 #define Encode_key     @"e10adc3949ba59abbe56e057f20f883e"
 
 #warning here key and 分享urlScheme
-
 #define UM_AppKey      @"59bf8f363eae253acb000012"
 #define WeChat_AppKey  @"wx9951ca924b93ffb3"
 #define WeChat_Secret  @"0a30ffdb2c4889370fd98b8588438db1"

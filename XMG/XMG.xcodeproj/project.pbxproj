@@ -108,6 +108,11 @@
 		CDEA148720C4FAEA0055F35B /* password1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA148520C4FAEA0055F35B /* password1@2x.png */; };
 		CDEA149820C5007E0055F35B /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA149020C5007C0055F35B /* more@2x.png */; };
 		CDEA149B20C5007E0055F35B /* more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA149320C5007D0055F35B /* more@3x.png */; };
+		F7D68BFF20C5255B0056505E /* AddPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D68BFE20C5255B0056505E /* AddPWViewController.m */; };
+		F7D68C0220C536110056505E /* fingerAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D68C0120C536110056505E /* fingerAuthView.m */; };
+		F7D68C0520C540090056505E /* finger@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D68C0320C540080056505E /* finger@3x.png */; };
+		F7D68C0620C540090056505E /* finger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D68C0420C540090056505E /* finger@2x.png */; };
+		F7D68C0920C543B30056505E /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D68C0820C543B30056505E /* KeyChainStore.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -294,6 +299,14 @@
 		CDEA149020C5007C0055F35B /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
 		CDEA149320C5007D0055F35B /* more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@3x.png"; sourceTree = "<group>"; };
 		CFFA377E6E3AB139B1DFA941 /* Pods-XMG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMG.release.xcconfig"; path = "Pods/Target Support Files/Pods-XMG/Pods-XMG.release.xcconfig"; sourceTree = "<group>"; };
+		F7D68BFD20C5255B0056505E /* AddPWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPWViewController.h; sourceTree = "<group>"; };
+		F7D68BFE20C5255B0056505E /* AddPWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPWViewController.m; sourceTree = "<group>"; };
+		F7D68C0020C536110056505E /* fingerAuthView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fingerAuthView.h; sourceTree = "<group>"; };
+		F7D68C0120C536110056505E /* fingerAuthView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fingerAuthView.m; sourceTree = "<group>"; };
+		F7D68C0320C540080056505E /* finger@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@3x.png"; sourceTree = "<group>"; };
+		F7D68C0420C540090056505E /* finger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@2x.png"; sourceTree = "<group>"; };
+		F7D68C0720C543B30056505E /* KeyChainStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
+		F7D68C0820C543B30056505E /* KeyChainStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -537,6 +550,8 @@
 		B968683C201AD048000E6EE6 /* RootVC */ = {
 			isa = PBXGroup;
 			children = (
+				F7D68C0020C536110056505E /* fingerAuthView.h */,
+				F7D68C0120C536110056505E /* fingerAuthView.m */,
 				B968683D201AD057000E6EE6 /* RootViewController.h */,
 				B968683E201AD057000E6EE6 /* RootViewController.m */,
 				CDEA147B20BFB4300055F35B /* RootView.h */,
@@ -545,6 +560,8 @@
 				CDEA147F20BFB4410055F35B /* RootCell.m */,
 				CDEA148120BFB5C90055F35B /* RootInfo.h */,
 				CDEA148220BFB5C90055F35B /* RootInfo.m */,
+				F7D68BFD20C5255B0056505E /* AddPWViewController.h */,
+				F7D68BFE20C5255B0056505E /* AddPWViewController.m */,
 			);
 			path = RootVC;
 			sourceTree = "<group>";
@@ -621,6 +638,8 @@
 			children = (
 				B936DE482019855900BE2529 /* MBProgressHUD+XMG.h */,
 				B936DE7D2019855B00BE2529 /* MBProgressHUD+XMG.m */,
+				F7D68C0720C543B30056505E /* KeyChainStore.h */,
+				F7D68C0820C543B30056505E /* KeyChainStore.m */,
 				B936DE6D2019855A00BE2529 /* NSObject+XMGReviewNull.h */,
 				B936DE542019855900BE2529 /* NSObject+XMGReviewNull.m */,
 				B936DE7E2019855B00BE2529 /* NSString+Check.h */,
@@ -684,6 +703,8 @@
 		CDEA145C20B983780055F35B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				F7D68C0420C540090056505E /* finger@2x.png */,
+				F7D68C0320C540080056505E /* finger@3x.png */,
 				CDEA149020C5007C0055F35B /* more@2x.png */,
 				CDEA149320C5007D0055F35B /* more@3x.png */,
 				CDEA146A20BFB3950055F35B /* password0@2x.png */,
@@ -713,7 +734,6 @@
 				B9A879A52018B49C00BEDCB7 /* Sources */,
 				B9A879A62018B49C00BEDCB7 /* Frameworks */,
 				B9A879A72018B49C00BEDCB7 /* Resources */,
-				AA8C1D3B1DB6CF6389C692C2 /* [CP] Embed Pods Frameworks */,
 				C9E0540DE73B1222EC8B1B10 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -835,6 +855,8 @@
 				CDEA149820C5007E0055F35B /* more@2x.png in Resources */,
 				B92317DF2019D1EF0014AFA9 /* README.txt in Resources */,
 				CDEA147420BFB3960055F35B /* password2@2x.png in Resources */,
+				F7D68C0620C540090056505E /* finger@2x.png in Resources */,
+				F7D68C0520C540090056505E /* finger@3x.png in Resources */,
 				CDEA149B20C5007E0055F35B /* more@3x.png in Resources */,
 				CDEA147620BFB3960055F35B /* password0@2x.png in Resources */,
 				CDEA147220BFB3960055F35B /* password5@2x.png in Resources */,
@@ -878,21 +900,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AA8C1D3B1DB6CF6389C692C2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-XMG/Pods-XMG-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		C9E0540DE73B1222EC8B1B10 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -905,7 +912,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -938,6 +946,7 @@
 				B936DE882019855B00BE2529 /* XGLabel.m in Sources */,
 				B936DE9D2019855B00BE2529 /* MBProgressHUD+XMG.m in Sources */,
 				B936DE892019855B00BE2529 /* UICollectionViewLeftAlignedLayout.m in Sources */,
+				F7D68C0920C543B30056505E /* KeyChainStore.m in Sources */,
 				B936DE8C2019855B00BE2529 /* XGDatePickView.m in Sources */,
 				B936DE962019855B00BE2529 /* NSString+XMGDynamic.m in Sources */,
 				B936DE9E2019855B00BE2529 /* XGDataRequest.m in Sources */,
@@ -946,6 +955,8 @@
 				B936DE9C2019855B00BE2529 /* NSString+XMGPinYin.m in Sources */,
 				B936DE872019855B00BE2529 /* XMGActionSheet.m in Sources */,
 				B936DE842019855B00BE2529 /* NSString+XMGCrypt.m in Sources */,
+				F7D68BFF20C5255B0056505E /* AddPWViewController.m in Sources */,
+				F7D68C0220C536110056505E /* fingerAuthView.m in Sources */,
 				B936DE9A2019855B00BE2529 /* XMGLocationManager.m in Sources */,
 				B936DE972019855B00BE2529 /* UINavigationController+XMG.m in Sources */,
 				B936DE9B2019855B00BE2529 /* UIAlertController+Delay.m in Sources */,

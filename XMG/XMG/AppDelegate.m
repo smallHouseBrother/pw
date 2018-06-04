@@ -11,10 +11,12 @@
 #import <UShareUI/UShareUI.h>
 #import <IQKeyboardManager.h>
 #import <Bugly/Bugly.h>
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "XGNavigationController.h"
 #import "RootViewController.h"
+#import "fingerAuthView.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <fingerAuthViewDelegate>
 
 @end
 
@@ -25,14 +27,31 @@
     [self setUMShare];
     [self setUMMoblic];
     [self setBugly];
-
+    [GADMobileAds configureWithApplicationID:AdMobId];
+    
     [IQKeyboardManager sharedManager].enable = YES;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     RootViewController * rootVC = [[RootViewController alloc] init];
     XGNavigationController * rootNavi = [[XGNavigationController alloc] initWithRootViewController:rootVC];
     self.window.rootViewController = rootNavi;
     [self.window makeKeyAndVisible];
+
+    [self requestFingerAuth];
+    
     return YES;
+}
+
+- (void)requestFingerAuth
+{
+    fingerAuthView * finger = [[fingerAuthView alloc] init];
+    finger.delegate = self;
+    [[UIApplication sharedApplication].keyWindow addSubview:finger];
+    finger.sd_layout.spaceToSuperView(UIEdgeInsetsZero);
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [self requestFingerAuth];
 }
 
 #pragma mark - 友盟分享

@@ -9,11 +9,13 @@
 #import "RootView.h"
 #import "RootCell.h"
 #import "RootInfo.h"
+#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface RootView () <UITableViewDelegate, UITableViewDataSource>
 {
-    UITableView * _tableView;
-    NSArray     * _dataArray;
+    GADBannerView * _bannerView;
+    UITableView   * _tableView;
+    NSArray       * _dataArray;
 }
 @end
 
@@ -38,13 +40,24 @@
     _tableView.dataSource = self;
     _tableView.rowHeight = 55;
     [self addSubview:_tableView];
-    _tableView.sd_layout.spaceToSuperView(UIEdgeInsetsZero);
+    _tableView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 50, 0));
     
     [_tableView registerClass:[RootCell class] forCellReuseIdentifier:@"RootCell"];
 }
 
-- (void)reloadRootTableWithArray:(NSArray *)dataArray
+- (void)reloadRootTableWithArray:(NSArray *)dataArray withVC:(UIViewController *)rootVC
 {
+    _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait];
+    _bannerView.rootViewController = rootVC;
+    _bannerView.adUnitID = PWBannerAd;
+    [self addSubview:_bannerView];
+    [_bannerView loadRequest:[GADRequest request]];
+    UIEdgeInsets insets = UIEdgeInsetsMake(ScreenHeight-50, 0, 0, 0);
+    if (iPhoneX) {
+        insets = UIEdgeInsetsMake(insets.top-34, insets.left, insets.bottom+34, insets.right);
+    }
+    _bannerView.sd_layout.spaceToSuperView(insets);
+    
     _tableView.tableFooterView = [self getTableFooter];
     
     _dataArray = [dataArray copy];
@@ -72,7 +85,9 @@
 
 - (void)addPassWord:(UIButton *)button
 {
+    RootInfo * info = [_dataArray firstObject];
     
+    [self.delegate RootViewDidSelectInfo:info];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -92,7 +107,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    RootInfo * info = _dataArray[indexPath.row];
     
+    [self.delegate RootViewDidSelectInfo:info];
 }
 
 @end

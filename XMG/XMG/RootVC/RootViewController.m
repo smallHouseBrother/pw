@@ -58,7 +58,7 @@
         info.accountNum = @"1";
         [dataArray addObject:info];
     }
-    [(RootView *)self.view reloadRootTableWithArray:dataArray];
+    [(RootView *)self.view reloadRootTableWithArray:dataArray withVC:self];
 }
 
 - (void)showMoreBarButtonItem

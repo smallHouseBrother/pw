@@ -8,13 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class RootInfo;
+
 @protocol RootViewDelegate <NSObject>
+
+- (void)RootViewDidSelectInfo:(RootInfo *)info;
+
 @end
 
 @interface RootView : UIView
 
 @property (nonatomic, weak) id <RootViewDelegate> delegate;
 
-- (void)reloadRootTableWithArray:(NSArray *)dataArray;
+- (void)reloadRootTableWithArray:(NSArray *)dataArray withVC:(UIViewController *)rootVC;
 
 @end

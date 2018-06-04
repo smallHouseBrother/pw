@@ -140,7 +140,7 @@
 
 - (NSString *)baseUrl
 {
-    return Base_Url;
+    return @"";
 }
 
 - (NSString *)requestUrl
