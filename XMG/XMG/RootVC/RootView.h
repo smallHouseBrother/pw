@@ -18,6 +18,8 @@
 
 @interface RootView : UIView
 
+@property (nonatomic, strong) UITableView * tableView;
+
 @property (nonatomic, weak) id <RootViewDelegate> delegate;
 
 - (void)reloadRootTableWithArray:(NSArray *)dataArray withVC:(UIViewController *)rootVC;

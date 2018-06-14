@@ -20,6 +20,8 @@
 #define IsDebug NO
 #endif
 
+#define lockPW [[NSUserDefaults standardUserDefaults] objectForKey:@"lockPW"]
+
 ///谷歌广告 正式id
 #define AdMobId  @"ca-app-pub-3370442864980896~7200670155"
 ///banner
@@ -35,8 +37,8 @@
 ///插页测试id
 #define chaPageId @"ca-app-pub-3940256099942544/4411468910"
 
-
-
+#define Icon_Color COLOR_HEX(@"#f4a85e")
+#define Screen_Scale [UIScreen mainScreen].scale
 
 #define Encode_key     @"e10adc3949ba59abbe56e057f20f883e"
 

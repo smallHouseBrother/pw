@@ -27,13 +27,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:self.title];
+    [MobClick beginLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:self.title];
+    [MobClick endLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)setBackItem
@@ -42,16 +42,8 @@
     self.navigationItem.leftBarButtonItem = back;
 }
 
-
-- (void)vertifyStatusWithCode:(NSInteger)code
+- (void)backAction
 {
-    @synchronized (self.view.window) {
-//        AppDelegate * delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//        [delegate kickAwayToReLogin:YES];
-    }
-}
-
-- (void)backButtonClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

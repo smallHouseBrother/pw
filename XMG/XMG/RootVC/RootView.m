@@ -14,7 +14,6 @@
 @interface RootView () <UITableViewDelegate, UITableViewDataSource>
 {
     GADBannerView * _bannerView;
-    UITableView   * _tableView;
     NSArray       * _dataArray;
 }
 @end
@@ -35,12 +34,11 @@
 {
     _tableView = [[UITableView alloc] init];
     _tableView.backgroundColor = COLOR_HEX(@"#f5f5f5");
-    _tableView.tableFooterView = [[UIView alloc] init];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.rowHeight = 55;
     [self addSubview:_tableView];
-    _tableView.sd_layout.spaceToSuperView(UIEdgeInsetsMake(0, 0, 50, 0));
+    _tableView.sd_layout.spaceToSuperView(UIEdgeInsetsZero);
     
     [_tableView registerClass:[RootCell class] forCellReuseIdentifier:@"RootCell"];
 }
@@ -48,15 +46,14 @@
 - (void)reloadRootTableWithArray:(NSArray *)dataArray withVC:(UIViewController *)rootVC
 {
     _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait];
+    _bannerView.backgroundColor = COLOR_HEX(@"#f5f5f5");
     _bannerView.rootViewController = rootVC;
-    _bannerView.adUnitID = PWBannerAd;
+    _bannerView.adUnitID = textId;
     [self addSubview:_bannerView];
     [_bannerView loadRequest:[GADRequest request]];
-    UIEdgeInsets insets = UIEdgeInsetsMake(ScreenHeight-50, 0, 0, 0);
-    if (iPhoneX) {
-        insets = UIEdgeInsetsMake(insets.top-34, insets.left, insets.bottom+34, insets.right);
-    }
-    _bannerView.sd_layout.spaceToSuperView(insets);
+    
+    CGFloat bottom = 0; if (iPhoneX) bottom = 34;
+    _bannerView.sd_layout.leftEqualToView(self).bottomSpaceToView(self, bottom).rightEqualToView(self).heightIs(50);
     
     _tableView.tableFooterView = [self getTableFooter];
     

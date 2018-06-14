@@ -9,15 +9,13 @@
 #import "AppDelegate.h"
 #import <UMMobClick/MobClick.h>
 #import <UShareUI/UShareUI.h>
-#import <IQKeyboardManager.h>
 #import <Bugly/Bugly.h>
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import "XGNavigationController.h"
 #import "RootViewController.h"
-#import "fingerAuthView.h"
+#import "AuthViewController.h"
 
-@interface AppDelegate () <fingerAuthViewDelegate>
-
+@interface AppDelegate () <AuthViewControllerDelegate>
 @end
 
 @implementation AppDelegate
@@ -29,7 +27,6 @@
     [self setBugly];
     [GADMobileAds configureWithApplicationID:AdMobId];
     
-    [IQKeyboardManager sharedManager].enable = YES;
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     RootViewController * rootVC = [[RootViewController alloc] init];
     XGNavigationController * rootNavi = [[XGNavigationController alloc] initWithRootViewController:rootVC];
@@ -43,10 +40,18 @@
 
 - (void)requestFingerAuth
 {
-    fingerAuthView * finger = [[fingerAuthView alloc] init];
-    finger.delegate = self;
-    [[UIApplication sharedApplication].keyWindow addSubview:finger];
-    finger.sd_layout.spaceToSuperView(UIEdgeInsetsZero);
+    return;
+    AuthViewController * auth = [[AuthViewController alloc] init];
+    
+    auth.delegate = self;
+    
+    [self.window.rootViewController presentViewController:auth animated:YES completion:nil];
+}
+
+#pragma mark - AuthViewControllerDelegate
+- (void)returnAuthResult:(BOOL)isSuccess
+{
+    ///解锁成功
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

@@ -108,11 +108,25 @@
 		CDEA148720C4FAEA0055F35B /* password1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA148520C4FAEA0055F35B /* password1@2x.png */; };
 		CDEA149820C5007E0055F35B /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA149020C5007C0055F35B /* more@2x.png */; };
 		CDEA149B20C5007E0055F35B /* more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA149320C5007D0055F35B /* more@3x.png */; };
+		F7CD59D520CE20790066C164 /* finger@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59D320CE20790066C164 /* finger@3x.png */; };
+		F7CD59D620CE20790066C164 /* finger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59D420CE20790066C164 /* finger@2x.png */; };
+		F7CD59D920CE77DC0066C164 /* faceId@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59D720CE77DB0066C164 /* faceId@2x.png */; };
+		F7CD59DA20CE77DC0066C164 /* faceId@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59D820CE77DC0066C164 /* faceId@3x.png */; };
+		F7CD59DD20CE7D6A0066C164 /* AuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59DC20CE7D6A0066C164 /* AuthViewController.m */; };
+		F7CD59E920CFD51A0066C164 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59DF20CFD51A0066C164 /* CWInteractiveTransition.m */; };
+		F7CD59EA20CFD51A0066C164 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59E220CFD51A0066C164 /* UIViewController+CWLateralSlide.m */; };
+		F7CD59EB20CFD51A0066C164 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59E520CFD51A0066C164 /* CWLateralSlideAnimator.m */; };
+		F7CD59EC20CFD51A0066C164 /* CWDrawerTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59E620CFD51A0066C164 /* CWDrawerTransition.m */; };
+		F7CD59ED20CFD51A0066C164 /* CWLateralSlideConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59E820CFD51A0066C164 /* CWLateralSlideConfiguration.m */; };
+		F7CD59F320D10D830066C164 /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59F220D10D830066C164 /* MoreViewController.m */; };
+		F7CD59F620D112460066C164 /* SearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59F520D112460066C164 /* SearchResultViewController.m */; };
+		F7CD59F920D127630066C164 /* navigation_back@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59F720D127630066C164 /* navigation_back@3x.png */; };
+		F7CD59FA20D127630066C164 /* navigation_back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59F820D127630066C164 /* navigation_back@2x.png */; };
 		F7D68BFF20C5255B0056505E /* AddPWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D68BFE20C5255B0056505E /* AddPWViewController.m */; };
-		F7D68C0220C536110056505E /* fingerAuthView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D68C0120C536110056505E /* fingerAuthView.m */; };
 		F7D68C0520C540090056505E /* finger@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D68C0320C540080056505E /* finger@3x.png */; };
 		F7D68C0620C540090056505E /* finger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7D68C0420C540090056505E /* finger@2x.png */; };
 		F7D68C0920C543B30056505E /* KeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F7D68C0820C543B30056505E /* KeyChainStore.m */; };
+		F7E309D020D26FC200DFE6E1 /* SearchBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = F7E309CF20D26FC200DFE6E1 /* SearchBackView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -299,14 +313,36 @@
 		CDEA149020C5007C0055F35B /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
 		CDEA149320C5007D0055F35B /* more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@3x.png"; sourceTree = "<group>"; };
 		CFFA377E6E3AB139B1DFA941 /* Pods-XMG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMG.release.xcconfig"; path = "Pods/Target Support Files/Pods-XMG/Pods-XMG.release.xcconfig"; sourceTree = "<group>"; };
+		F7CD59D320CE20790066C164 /* finger@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@3x.png"; sourceTree = "<group>"; };
+		F7CD59D420CE20790066C164 /* finger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@2x.png"; sourceTree = "<group>"; };
+		F7CD59D720CE77DB0066C164 /* faceId@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceId@2x.png"; sourceTree = "<group>"; };
+		F7CD59D820CE77DC0066C164 /* faceId@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceId@3x.png"; sourceTree = "<group>"; };
+		F7CD59DB20CE7D6A0066C164 /* AuthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AuthViewController.h; sourceTree = "<group>"; };
+		F7CD59DC20CE7D6A0066C164 /* AuthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AuthViewController.m; sourceTree = "<group>"; };
+		F7CD59DF20CFD51A0066C164 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
+		F7CD59E020CFD51A0066C164 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
+		F7CD59E120CFD51A0066C164 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
+		F7CD59E220CFD51A0066C164 /* UIViewController+CWLateralSlide.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CWLateralSlide.m"; sourceTree = "<group>"; };
+		F7CD59E320CFD51A0066C164 /* CWLateralSlideConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideConfiguration.h; sourceTree = "<group>"; };
+		F7CD59E420CFD51A0066C164 /* CWInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWInteractiveTransition.h; sourceTree = "<group>"; };
+		F7CD59E520CFD51A0066C164 /* CWLateralSlideAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideAnimator.m; sourceTree = "<group>"; };
+		F7CD59E620CFD51A0066C164 /* CWDrawerTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWDrawerTransition.m; sourceTree = "<group>"; };
+		F7CD59E720CFD51A0066C164 /* UIViewController+CWLateralSlide.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CWLateralSlide.h"; sourceTree = "<group>"; };
+		F7CD59E820CFD51A0066C164 /* CWLateralSlideConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWLateralSlideConfiguration.m; sourceTree = "<group>"; };
+		F7CD59F120D10D830066C164 /* MoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
+		F7CD59F220D10D830066C164 /* MoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
+		F7CD59F420D112460066C164 /* SearchResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchResultViewController.h; sourceTree = "<group>"; };
+		F7CD59F520D112460066C164 /* SearchResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchResultViewController.m; sourceTree = "<group>"; };
+		F7CD59F720D127630066C164 /* navigation_back@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation_back@3x.png"; sourceTree = "<group>"; };
+		F7CD59F820D127630066C164 /* navigation_back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigation_back@2x.png"; sourceTree = "<group>"; };
 		F7D68BFD20C5255B0056505E /* AddPWViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddPWViewController.h; sourceTree = "<group>"; };
 		F7D68BFE20C5255B0056505E /* AddPWViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddPWViewController.m; sourceTree = "<group>"; };
-		F7D68C0020C536110056505E /* fingerAuthView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = fingerAuthView.h; sourceTree = "<group>"; };
-		F7D68C0120C536110056505E /* fingerAuthView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = fingerAuthView.m; sourceTree = "<group>"; };
 		F7D68C0320C540080056505E /* finger@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@3x.png"; sourceTree = "<group>"; };
 		F7D68C0420C540090056505E /* finger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@2x.png"; sourceTree = "<group>"; };
 		F7D68C0720C543B30056505E /* KeyChainStore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyChainStore.h; sourceTree = "<group>"; };
 		F7D68C0820C543B30056505E /* KeyChainStore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyChainStore.m; sourceTree = "<group>"; };
+		F7E309CE20D26FC200DFE6E1 /* SearchBackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBackView.h; sourceTree = "<group>"; };
+		F7E309CF20D26FC200DFE6E1 /* SearchBackView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBackView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -550,8 +586,14 @@
 		B968683C201AD048000E6EE6 /* RootVC */ = {
 			isa = PBXGroup;
 			children = (
-				F7D68C0020C536110056505E /* fingerAuthView.h */,
-				F7D68C0120C536110056505E /* fingerAuthView.m */,
+				F7CD59DB20CE7D6A0066C164 /* AuthViewController.h */,
+				F7CD59DC20CE7D6A0066C164 /* AuthViewController.m */,
+				F7CD59D420CE20790066C164 /* finger@2x.png */,
+				F7CD59D320CE20790066C164 /* finger@3x.png */,
+				F7CD59D720CE77DB0066C164 /* faceId@2x.png */,
+				F7CD59D820CE77DC0066C164 /* faceId@3x.png */,
+				F7CD59F120D10D830066C164 /* MoreViewController.h */,
+				F7CD59F220D10D830066C164 /* MoreViewController.m */,
 				B968683D201AD057000E6EE6 /* RootViewController.h */,
 				B968683E201AD057000E6EE6 /* RootViewController.m */,
 				CDEA147B20BFB4300055F35B /* RootView.h */,
@@ -560,6 +602,10 @@
 				CDEA147F20BFB4410055F35B /* RootCell.m */,
 				CDEA148120BFB5C90055F35B /* RootInfo.h */,
 				CDEA148220BFB5C90055F35B /* RootInfo.m */,
+				F7E309CE20D26FC200DFE6E1 /* SearchBackView.h */,
+				F7E309CF20D26FC200DFE6E1 /* SearchBackView.m */,
+				F7CD59F420D112460066C164 /* SearchResultViewController.h */,
+				F7CD59F520D112460066C164 /* SearchResultViewController.m */,
 				F7D68BFD20C5255B0056505E /* AddPWViewController.h */,
 				F7D68BFE20C5255B0056505E /* AddPWViewController.m */,
 			);
@@ -636,6 +682,7 @@
 		B9A879E02018B57D00BEDCB7 /* XMGTool */ = {
 			isa = PBXGroup;
 			children = (
+				F7CD59DE20CFD51A0066C164 /* CWLateralSlide */,
 				B936DE482019855900BE2529 /* MBProgressHUD+XMG.h */,
 				B936DE7D2019855B00BE2529 /* MBProgressHUD+XMG.m */,
 				F7D68C0720C543B30056505E /* KeyChainStore.h */,
@@ -707,6 +754,8 @@
 				F7D68C0320C540080056505E /* finger@3x.png */,
 				CDEA149020C5007C0055F35B /* more@2x.png */,
 				CDEA149320C5007D0055F35B /* more@3x.png */,
+				F7CD59F820D127630066C164 /* navigation_back@2x.png */,
+				F7CD59F720D127630066C164 /* navigation_back@3x.png */,
 				CDEA146A20BFB3950055F35B /* password0@2x.png */,
 				CDEA146C20BFB3960055F35B /* password0@3x.png */,
 				CDEA148520C4FAEA0055F35B /* password1@2x.png */,
@@ -721,6 +770,23 @@
 				CDEA146B20BFB3950055F35B /* password5@3x.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		F7CD59DE20CFD51A0066C164 /* CWLateralSlide */ = {
+			isa = PBXGroup;
+			children = (
+				F7CD59DF20CFD51A0066C164 /* CWInteractiveTransition.m */,
+				F7CD59E020CFD51A0066C164 /* CWDrawerTransition.h */,
+				F7CD59E120CFD51A0066C164 /* CWLateralSlideAnimator.h */,
+				F7CD59E220CFD51A0066C164 /* UIViewController+CWLateralSlide.m */,
+				F7CD59E320CFD51A0066C164 /* CWLateralSlideConfiguration.h */,
+				F7CD59E420CFD51A0066C164 /* CWInteractiveTransition.h */,
+				F7CD59E520CFD51A0066C164 /* CWLateralSlideAnimator.m */,
+				F7CD59E620CFD51A0066C164 /* CWDrawerTransition.m */,
+				F7CD59E720CFD51A0066C164 /* UIViewController+CWLateralSlide.h */,
+				F7CD59E820CFD51A0066C164 /* CWLateralSlideConfiguration.m */,
+			);
+			path = CWLateralSlide;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -847,20 +913,26 @@
 				B9A879B62018B49C00BEDCB7 /* Assets.xcassets in Resources */,
 				B92317E32019D1EF0014AFA9 /* UMSocialSDKPromptResources.bundle in Resources */,
 				CDEA147720BFB3960055F35B /* password5@3x.png in Resources */,
+				F7CD59F920D127630066C164 /* navigation_back@3x.png in Resources */,
+				F7CD59D620CE20790066C164 /* finger@2x.png in Resources */,
 				B92317DA2019D1EF0014AFA9 /* WeiboSDK.bundle in Resources */,
+				F7CD59FA20D127630066C164 /* navigation_back@2x.png in Resources */,
 				CDEA147820BFB3960055F35B /* password0@3x.png in Resources */,
 				CDEA147320BFB3960055F35B /* password3@3x.png in Resources */,
+				F7CD59DA20CE77DC0066C164 /* faceId@3x.png in Resources */,
 				CDEA148620C4FAEA0055F35B /* password1@3x.png in Resources */,
 				B92317E42019D1EF0014AFA9 /* UMSocialSDKResources.bundle in Resources */,
 				CDEA149820C5007E0055F35B /* more@2x.png in Resources */,
 				B92317DF2019D1EF0014AFA9 /* README.txt in Resources */,
 				CDEA147420BFB3960055F35B /* password2@2x.png in Resources */,
 				F7D68C0620C540090056505E /* finger@2x.png in Resources */,
+				F7CD59D920CE77DC0066C164 /* faceId@2x.png in Resources */,
 				F7D68C0520C540090056505E /* finger@3x.png in Resources */,
 				CDEA149B20C5007E0055F35B /* more@3x.png in Resources */,
 				CDEA147620BFB3960055F35B /* password0@2x.png in Resources */,
 				CDEA147220BFB3960055F35B /* password5@2x.png in Resources */,
 				B92317DE2019D1EF0014AFA9 /* read_me.txt in Resources */,
+				F7CD59D520CE20790066C164 /* finger@3x.png in Resources */,
 				CDEA147A20BFB3960055F35B /* password4@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -929,11 +1001,14 @@
 			files = (
 				B936DE8D2019855B00BE2529 /* UIAlertView+Delay.m in Sources */,
 				B9A879BC2018B49C00BEDCB7 /* main.m in Sources */,
+				F7CD59EA20CFD51A0066C164 /* UIViewController+CWLateralSlide.m in Sources */,
 				B936DE942019855B00BE2529 /* NSString+urlEncode.m in Sources */,
 				B936DE982019855B00BE2529 /* StringHelper.m in Sources */,
 				B936DE952019855B00BE2529 /* UIColor+XMGColor.m in Sources */,
 				B936DE8F2019855B00BE2529 /* AESCrypt.m in Sources */,
+				F7CD59E920CFD51A0066C164 /* CWInteractiveTransition.m in Sources */,
 				B936DE462019852700BE2529 /* XGNavigationController.m in Sources */,
+				F7CD59F620D112460066C164 /* SearchResultViewController.m in Sources */,
 				B936DE452019852700BE2529 /* XGBaseViewController.m in Sources */,
 				B936DE922019855B00BE2529 /* NSString+Base64.m in Sources */,
 				B936DE832019855B00BE2529 /* NSString+Check.m in Sources */,
@@ -943,20 +1018,24 @@
 				B936DE862019855B00BE2529 /* XMGSingleton.m in Sources */,
 				CDEA148020BFB4410055F35B /* RootCell.m in Sources */,
 				B936DE992019855B00BE2529 /* XGCountDownBtn.m in Sources */,
+				F7CD59EB20CFD51A0066C164 /* CWLateralSlideAnimator.m in Sources */,
 				B936DE882019855B00BE2529 /* XGLabel.m in Sources */,
 				B936DE9D2019855B00BE2529 /* MBProgressHUD+XMG.m in Sources */,
 				B936DE892019855B00BE2529 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				F7D68C0920C543B30056505E /* KeyChainStore.m in Sources */,
 				B936DE8C2019855B00BE2529 /* XGDatePickView.m in Sources */,
 				B936DE962019855B00BE2529 /* NSString+XMGDynamic.m in Sources */,
+				F7CD59F320D10D830066C164 /* MoreViewController.m in Sources */,
 				B936DE9E2019855B00BE2529 /* XGDataRequest.m in Sources */,
 				B936DE8E2019855B00BE2529 /* XGPicker.m in Sources */,
 				B936DE822019855B00BE2529 /* DataRequest.m in Sources */,
 				B936DE9C2019855B00BE2529 /* NSString+XMGPinYin.m in Sources */,
+				F7CD59ED20CFD51A0066C164 /* CWLateralSlideConfiguration.m in Sources */,
 				B936DE872019855B00BE2529 /* XMGActionSheet.m in Sources */,
+				F7CD59DD20CE7D6A0066C164 /* AuthViewController.m in Sources */,
 				B936DE842019855B00BE2529 /* NSString+XMGCrypt.m in Sources */,
 				F7D68BFF20C5255B0056505E /* AddPWViewController.m in Sources */,
-				F7D68C0220C536110056505E /* fingerAuthView.m in Sources */,
+				F7CD59EC20CFD51A0066C164 /* CWDrawerTransition.m in Sources */,
 				B936DE9A2019855B00BE2529 /* XMGLocationManager.m in Sources */,
 				B936DE972019855B00BE2529 /* UINavigationController+XMG.m in Sources */,
 				B936DE9B2019855B00BE2529 /* UIAlertController+Delay.m in Sources */,
@@ -965,6 +1044,7 @@
 				B936DE8B2019855B00BE2529 /* UIView+XMG.m in Sources */,
 				B936DE852019855B00BE2529 /* VPImageCropperViewController.m in Sources */,
 				B936DE912019855B00BE2529 /* NSData+CommonCrypto.m in Sources */,
+				F7E309D020D26FC200DFE6E1 /* SearchBackView.m in Sources */,
 				B936DE932019855B00BE2529 /* NSString+MD5.m in Sources */,
 				CDEA147D20BFB4300055F35B /* RootView.m in Sources */,
 			);

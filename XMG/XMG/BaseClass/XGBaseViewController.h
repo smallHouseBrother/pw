@@ -14,6 +14,4 @@
 
 - (void)backAction;
 
-- (void)vertifyStatusWithCode:(NSInteger)code;
-
 @end
