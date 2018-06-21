@@ -15,8 +15,8 @@
     self = [super init];
     if (self)
     {
-        self.backgroundColor = COLOR_HEX(@"#fafafa"); //UIBlurEffect
-        
+        self.backgroundColor = COLOR_HEX(@"#fafafa");
+
         [self addSubViews];
     }
     return self;

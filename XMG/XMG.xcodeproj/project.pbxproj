@@ -108,6 +108,9 @@
 		CDEA148720C4FAEA0055F35B /* password1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA148520C4FAEA0055F35B /* password1@2x.png */; };
 		CDEA149820C5007E0055F35B /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA149020C5007C0055F35B /* more@2x.png */; };
 		CDEA149B20C5007E0055F35B /* more@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = CDEA149320C5007D0055F35B /* more@3x.png */; };
+		F707458920DBB11100FE7779 /* XMGFMDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = F707458820DBB11100FE7779 /* XMGFMDBTool.m */; };
+		F707458C20DBB3C100FE7779 /* FMDB_Tool.m in Sources */ = {isa = PBXBuildFile; fileRef = F707458A20DBB3C000FE7779 /* FMDB_Tool.m */; };
+		F707458F20DBB48100FE7779 /* PassWordInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F707458E20DBB48100FE7779 /* PassWordInfo.m */; };
 		F7CD59D520CE20790066C164 /* finger@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59D320CE20790066C164 /* finger@3x.png */; };
 		F7CD59D620CE20790066C164 /* finger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59D420CE20790066C164 /* finger@2x.png */; };
 		F7CD59D920CE77DC0066C164 /* faceId@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F7CD59D720CE77DB0066C164 /* faceId@2x.png */; };
@@ -313,6 +316,12 @@
 		CDEA149020C5007C0055F35B /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
 		CDEA149320C5007D0055F35B /* more@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@3x.png"; sourceTree = "<group>"; };
 		CFFA377E6E3AB139B1DFA941 /* Pods-XMG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMG.release.xcconfig"; path = "Pods/Target Support Files/Pods-XMG/Pods-XMG.release.xcconfig"; sourceTree = "<group>"; };
+		F707458720DBB11100FE7779 /* XMGFMDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMGFMDBTool.h; sourceTree = "<group>"; };
+		F707458820DBB11100FE7779 /* XMGFMDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMGFMDBTool.m; sourceTree = "<group>"; };
+		F707458A20DBB3C000FE7779 /* FMDB_Tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDB_Tool.m; sourceTree = "<group>"; };
+		F707458B20DBB3C000FE7779 /* FMDB_Tool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB_Tool.h; sourceTree = "<group>"; };
+		F707458D20DBB48100FE7779 /* PassWordInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PassWordInfo.h; sourceTree = "<group>"; };
+		F707458E20DBB48100FE7779 /* PassWordInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PassWordInfo.m; sourceTree = "<group>"; };
 		F7CD59D320CE20790066C164 /* finger@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@3x.png"; sourceTree = "<group>"; };
 		F7CD59D420CE20790066C164 /* finger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "finger@2x.png"; sourceTree = "<group>"; };
 		F7CD59D720CE77DB0066C164 /* faceId@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "faceId@2x.png"; sourceTree = "<group>"; };
@@ -602,6 +611,8 @@
 				CDEA147F20BFB4410055F35B /* RootCell.m */,
 				CDEA148120BFB5C90055F35B /* RootInfo.h */,
 				CDEA148220BFB5C90055F35B /* RootInfo.m */,
+				F707458D20DBB48100FE7779 /* PassWordInfo.h */,
+				F707458E20DBB48100FE7779 /* PassWordInfo.m */,
 				F7E309CE20D26FC200DFE6E1 /* SearchBackView.h */,
 				F7E309CF20D26FC200DFE6E1 /* SearchBackView.m */,
 				F7CD59F420D112460066C164 /* SearchResultViewController.h */,
@@ -687,6 +698,10 @@
 				B936DE7D2019855B00BE2529 /* MBProgressHUD+XMG.m */,
 				F7D68C0720C543B30056505E /* KeyChainStore.h */,
 				F7D68C0820C543B30056505E /* KeyChainStore.m */,
+				F707458720DBB11100FE7779 /* XMGFMDBTool.h */,
+				F707458820DBB11100FE7779 /* XMGFMDBTool.m */,
+				F707458B20DBB3C000FE7779 /* FMDB_Tool.h */,
+				F707458A20DBB3C000FE7779 /* FMDB_Tool.m */,
 				B936DE6D2019855A00BE2529 /* NSObject+XMGReviewNull.h */,
 				B936DE542019855900BE2529 /* NSObject+XMGReviewNull.m */,
 				B936DE7E2019855B00BE2529 /* NSString+Check.h */,
@@ -1003,6 +1018,7 @@
 				B9A879BC2018B49C00BEDCB7 /* main.m in Sources */,
 				F7CD59EA20CFD51A0066C164 /* UIViewController+CWLateralSlide.m in Sources */,
 				B936DE942019855B00BE2529 /* NSString+urlEncode.m in Sources */,
+				F707458C20DBB3C100FE7779 /* FMDB_Tool.m in Sources */,
 				B936DE982019855B00BE2529 /* StringHelper.m in Sources */,
 				B936DE952019855B00BE2529 /* UIColor+XMGColor.m in Sources */,
 				B936DE8F2019855B00BE2529 /* AESCrypt.m in Sources */,
@@ -1022,6 +1038,7 @@
 				B936DE882019855B00BE2529 /* XGLabel.m in Sources */,
 				B936DE9D2019855B00BE2529 /* MBProgressHUD+XMG.m in Sources */,
 				B936DE892019855B00BE2529 /* UICollectionViewLeftAlignedLayout.m in Sources */,
+				F707458F20DBB48100FE7779 /* PassWordInfo.m in Sources */,
 				F7D68C0920C543B30056505E /* KeyChainStore.m in Sources */,
 				B936DE8C2019855B00BE2529 /* XGDatePickView.m in Sources */,
 				B936DE962019855B00BE2529 /* NSString+XMGDynamic.m in Sources */,
@@ -1032,6 +1049,7 @@
 				B936DE9C2019855B00BE2529 /* NSString+XMGPinYin.m in Sources */,
 				F7CD59ED20CFD51A0066C164 /* CWLateralSlideConfiguration.m in Sources */,
 				B936DE872019855B00BE2529 /* XMGActionSheet.m in Sources */,
+				F707458920DBB11100FE7779 /* XMGFMDBTool.m in Sources */,
 				F7CD59DD20CE7D6A0066C164 /* AuthViewController.m in Sources */,
 				B936DE842019855B00BE2529 /* NSString+XMGCrypt.m in Sources */,
 				F7D68BFF20C5255B0056505E /* AddPWViewController.m in Sources */,
