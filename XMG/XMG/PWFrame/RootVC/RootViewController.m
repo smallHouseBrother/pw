@@ -9,7 +9,7 @@
 #import <GoogleMobileAds/GoogleMobileAds.h>
 #import "UIViewController+CWLateralSlide.h"
 #import "SearchResultViewController.h"
-#import "AddPWViewController.h"
+#import "CategoryListViewController.h"
 #import "MoreViewController.h"
 #import "RootViewController.h"
 #import "SearchBackView.h"
@@ -95,7 +95,9 @@
 
 - (void)requestData
 {
-    NSArray * titleArray = @[@"网站管理", @"邮件", @"游戏", @"社交", @"银行账户", @"其他"];
+    
+#warning here shuliang
+    NSArray * titleArray = @[@"网站", @"邮件", @"游戏", @"社交", @"银行", @"其他"];
     NSMutableArray * dataArray = [NSMutableArray arrayWithCapacity:titleArray.count];
     for (NSInteger i = 0; i < titleArray.count; i++) {
         RootInfo * info = [[RootInfo alloc] init];
@@ -125,6 +127,8 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
+#warning here sousuo result
+
 #pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -152,14 +156,16 @@
 }
 
 
+#warning here advertise pinlv
 #pragma mark - RootViewDelegate
 - (void)RootViewDidSelectInfo:(RootInfo *)info
 {
     if ([self.interstitial isReady]) {
         [self.interstitial presentFromRootViewController:self];
     }
-    AddPWViewController * addPW = [[AddPWViewController alloc] init];
-    [self.navigationController pushViewController:addPW animated:YES];
+    CategoryListViewController * listVC = [[CategoryListViewController alloc] init];
+    listVC.info = info;
+    [self.navigationController pushViewController:listVC animated:YES];
 }
 
 - (GADInterstitial *)createAndLoadInterstitial

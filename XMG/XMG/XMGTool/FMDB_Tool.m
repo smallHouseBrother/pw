@@ -8,232 +8,173 @@
 
 #import "FMDB_Tool.h"
 #import <FMDB.h>
-#import "sqlite3.h"
 #import "PassWordInfo.h"
 
 @implementation FMDB_Tool
 
 //1.executeUpdate:不确定的参数用？来占位（后面参数必须是oc对象，；代表语句结束）
 //2.executeUpdateWithForamat：不确定的参数用%@，%d等来占位 （参数为原始数据类型，执行语句不区分大小写）
-//    [db executeUpdateWithFormat:@"insert into t_product (name,number) values (%@,%@);", info.singleName, info.number];
+//    [db executeUpdateWithFormat:@"insert into PW_TABLE (name,number) values (%@,%@);", info.singleName, info.number];
 //3.参数是数组的使用方式
-//    [db executeUpdate:@"insert into t_product(name,number) values(?,?);" withArgumentsInArray:@[info.singleName, info.number]];
+//    [db executeUpdate:@"insert into PW_TABLE(name,number) values(?,?);" withArgumentsInArray:@[info.singleName, info.number]];
 
-+ (BOOL)writeToDataBaseWithInfo:(PassWordInfo *)info
-{       
-    NSString * doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * fileName = [doc stringByAppendingPathComponent:@"fmd.sqlite"];
-    FMDatabase * dataBase = [FMDatabase databaseWithPath:fileName];
-    if (![dataBase open])
-    {
-        NSLog(@"open error, message: %@", dataBase.lastErrorMessage);
-        return NO;
-    }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS t_product(ID INTEGER PRIMARY KEY AUTOINCREMENT, SINGLEID INT, NAME TEXT, COUNT INT, FEE TEXT, IMAGE TEXT, PROPERTY TEXT, WAGE TEXT)"];
-    if (!create)
-    {
-        [dataBase close];
-        NSLog(@"create error, message: %@", dataBase.lastErrorMessage);
-        return NO;
-    }
-    
-    BOOL insert = [dataBase executeUpdate:@"INSERT INTO t_product(SINGLEID, NAME, COUNT, FEE, IMAGE, PROPERTY, WAGE) VALUES (?,?,?,?,?,?,?);", @(info.singleID), info.singleName, @(info.number), info.fee, info.imageURL, info.property, info.wage];
-    if (!insert)
-    {
-        [dataBase close];
-        NSLog(@"insert error, message: %@", dataBase.lastErrorMessage);
-        return NO;
-    }
-    [dataBase close];
-    NSLog(@"insert success");
-    return YES;
-}
-
-//查询所有数据
-+ (NSArray <PassWordInfo *> *)downAllDataFromDataBase
+///数据库文件
++ (FMDatabase *)getFMDatabase
 {
     NSString * doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * fileName = [doc stringByAppendingPathComponent:@"fmd.sqlite"];
-    FMDatabase * dataBase = [FMDatabase databaseWithPath:fileName];
+    NSString * fileName = [doc stringByAppendingPathComponent:@"fmdb.sqlite"];
+    return [FMDatabase databaseWithPath:fileName];
+}
+
+///插入单条数据
++ (BOOL)insertSingleDataToDataBaseWithInfo:(PassWordInfo *)info
+{
+    FMDatabase * dataBase = [self getFMDatabase];
     if (![dataBase open])
     {
-        NSLog(@"open error, message: %@", dataBase.lastErrorMessage);
-        return nil;
+        XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
+        return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS t_product(ID INTEGER PRIMARY KEY AUTOINCREMENT, SINGLEID INT, NAME TEXT, COUNT INT, FEE TEXT, IMAGE TEXT, PROPERTY TEXT, WAGE TEXT)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    
     if (!create)
     {
         [dataBase close];
-        NSLog(@"create error, message: %@", dataBase.lastErrorMessage);
+        XMGLog(@"create error, message: %@", dataBase.lastErrorMessage);
+        return NO;
+    }
+    
+    BOOL insert = [dataBase executeUpdate:@"INSERT INTO PW_TABLE(TYPEID, PWID, TITLE, ACCOUNT, PASSWORD, BEIZHU, IMAGE) VALUES (?,?,?,?,?,?,?);", @(info.typeId), @(info.pwId), info.titleName, info.account, info.passWord, info.beiZhu, info.imageData];
+    
+    if (!insert)
+    {
+        XMGLog(@"insert error, message: %@", dataBase.lastErrorMessage);
+    }
+    [dataBase close];
+    return insert;
+}
+
+///查询单类型所有数据
++ (NSArray <PassWordInfo *> *)querySingleTypeAllDataFromDataBaseWithType:(NSInteger)typeId
+{
+    FMDatabase * dataBase = [self getFMDatabase];
+    if (![dataBase open])
+    {
+        XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
+        return nil;
+    }
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    if (!create)
+    {
+        [dataBase close];
+        XMGLog(@"create error, message: %@", dataBase.lastErrorMessage);
         return nil;
     }
     
-    NSMutableArray * backArray = [NSMutableArray array];    
-    FMResultSet * resultSet = [dataBase executeQuery:@"SELECT * FROM t_product"];
-
+    NSMutableArray * backArray = [NSMutableArray array];
+    FMResultSet * resultSet = [dataBase executeQuery:@"SELECT * FROM PW_TABLE WHERE TYPEID = ?;", @(typeId)];
     while ([resultSet next])
     {
-//        SINGLEID, NAME, COUNT, FEE, IMAGE, PROPERTY, WAGE
-        productInfo * info = [[productInfo alloc] init];
-        info.singleID = [resultSet intForColumnIndex:1];
-        info.singleName = [resultSet objectForColumnIndex:2];
-        info.number = [resultSet intForColumnIndex:3];
-        info.fee = [resultSet objectForColumnIndex:4];
-        info.imageURL = [resultSet objectForColumnIndex:5];
-        info.property = [resultSet objectForColumnIndex:6];
-        info.wage = [resultSet objectForColumnIndex:7];
+        PassWordInfo * info = [[PassWordInfo alloc] init];
+        info.typeId = [resultSet intForColumnIndex:1];
+        info.pwId = [resultSet intForColumnIndex:2];
+        info.titleName = [resultSet objectForColumnIndex:3];
+        info.account = [resultSet objectForColumnIndex:4];
+        info.passWord = [resultSet objectForColumnIndex:5];
+        info.beiZhu = [resultSet objectForColumnIndex:6];
+        info.imageData = [resultSet dataForColumnIndex:7];
         [backArray addObject:info];
     }
     [dataBase close];
-    NSLog(@"examine success");
+    XMGLog(@"query success");
     return backArray;
 }
 
-//删除掉某条数据
-+ (BOOL)deleteSomeOneProductWithProduct:(PassWordInfo *)info
+///删除掉某条数据
++ (BOOL)deleteSingleDataWithPassWordInfo:(PassWordInfo *)info
 {
-    NSString * doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * fileName = [doc stringByAppendingPathComponent:@"fmd.sqlite"];
-    FMDatabase * dataBase = [FMDatabase databaseWithPath:fileName];
+    FMDatabase * dataBase = [self getFMDatabase];
     if (![dataBase open])
     {
-        NSLog(@"open error, message: %@", dataBase.lastErrorMessage);
+        XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS t_product(ID INTEGER PRIMARY KEY AUTOINCREMENT, SINGLEID INT, NAME TEXT, COUNT INT, FEE TEXT, IMAGE TEXT, PROPERTY TEXT, WAGE TEXT)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
     if (!create)
     {
         [dataBase close];
-        NSLog(@"create error, message: %@", dataBase.lastErrorMessage);
+        XMGLog(@"create error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
     
-    BOOL delete = [dataBase executeUpdate:@"DELETE FROM t_product WHERE SINGLEID = ? AND PROPERTY = ? AND WAGE = ?;", @(info.singleID), info.property, info.wage];
+    BOOL delete = [dataBase executeUpdate:@"DELETE FROM PW_TABLE WHERE PWID = ?;", @(info.pwId)];
     if (!delete)
     {
-        NSLog(@"delete error :%@", dataBase.lastErrorMessage);
+        XMGLog(@"delete error :%@", dataBase.lastErrorMessage);
     }
     [dataBase close];
     return delete;
 }
 
-//更新某条数据
-+ (BOOL)updateSomeOneProductWithProduct:(PassWordInfo *)info withNumber:(int)number
+///更新某条数据
++ (BOOL)updateSingleDataWithPassWordInfo:(PassWordInfo *)info
 {
-    NSString * doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * fileName = [doc stringByAppendingPathComponent:@"fmd.sqlite"];
-    FMDatabase * dataBase = [FMDatabase databaseWithPath:fileName];
+    FMDatabase * dataBase = [self getFMDatabase];
     if (![dataBase open])
     {
-        NSLog(@"open error, message: %@", dataBase.lastErrorMessage);
+        XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS t_product(ID INTEGER PRIMARY KEY AUTOINCREMENT, SINGLEID INT, NAME TEXT, COUNT INT, FEE TEXT, IMAGE TEXT, PROPERTY TEXT, WAGE TEXT)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
     if (!create)
     {
         [dataBase close];
-        NSLog(@"create error, message: %@", dataBase.lastErrorMessage);
+        XMGLog(@"create error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    
-    BOOL update = [dataBase executeUpdate:@"UPDATE t_product SET COUNT = ? WHERE SINGLEID = ? AND PROPERTY = ? AND WAGE = ?;", @(info.number+number), @(info.singleID), info.property, info.wage];
+
+    BOOL update = [dataBase executeUpdate:@"UPDATE PW_TABLE SET TITLE = ?, ACCOUNT = ?, PASSWORD = ?, BEIZHU = ?, IMAGE = ? WHERE TYPEID = ? AND PWID = ?;", info.titleName, info.account, info.passWord, info.beiZhu, info.imageData, @(info.typeId), @(info.pwId)];
     if (!update)
     {
-        NSLog(@"update error :%@", dataBase.lastErrorMessage);
+        XMGLog(@"update error :%@", dataBase.lastErrorMessage);
     }
     [dataBase close];
     return update;
 }
 
-//查询单品总数量
-+ (int)checkAllTheTableProductNumberWithDataBase
+///查询单类型总数量
++ (NSInteger)querySingleTypeNumFromDataBaseWithType:(NSInteger)typeId
 {
-    NSString * doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * fileName = [doc stringByAppendingPathComponent:@"fmd.sqlite"];
-    FMDatabase * dataBase = [FMDatabase databaseWithPath:fileName];
+    FMDatabase * dataBase = [self getFMDatabase];
     if (![dataBase open])
     {
-        NSLog(@"open error, message: %@", dataBase.lastErrorMessage);
+        XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return 0;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS t_product(ID INTEGER PRIMARY KEY AUTOINCREMENT, SINGLEID INT, NAME TEXT, COUNT INT, FEE TEXT, IMAGE TEXT, PROPERTY TEXT, WAGE TEXT)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
     if (!create)
     {
         [dataBase close];
-        NSLog(@"create error, message: %@", dataBase.lastErrorMessage);
+        XMGLog(@"create error, message: %@", dataBase.lastErrorMessage);
         return 0;
     }
-
-    int number = 0;    
-    FMResultSet * resultSet = [dataBase executeQuery:@"SELECT * FROM t_product"];
     
-    while ([resultSet next])
-    {
-        number += [resultSet intForColumnIndex:3];
+    NSInteger number = 0;
+    FMResultSet * resultSet = [dataBase executeQuery:@"SELECT * FROM PW_TABLE WHERE TYPEID = ?;", @(typeId)];
+    while ([resultSet next]) {
+        number++;
     }
+    
     [dataBase close];
-    NSLog(@"examine success");
     return number;
 }
 
-//查询某单品数量
-+ (int)checkSomeOneProductCountWithInfo:(productInfo *)info
-{
-    NSString * doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * fileName = [doc stringByAppendingPathComponent:@"fmd.sqlite"];
-    FMDatabase * dataBase = [FMDatabase databaseWithPath:fileName];
-    if (![dataBase open])
-    {
-        NSLog(@"open error, message: %@", dataBase.lastErrorMessage);
-        return 0;
-    }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS t_product(ID INTEGER PRIMARY KEY AUTOINCREMENT, SINGLEID INT, NAME TEXT, COUNT INT, FEE TEXT, IMAGE TEXT, PROPERTY TEXT, WAGE TEXT)"];
-    if (!create)
-    {
-        [dataBase close];
-        NSLog(@"create error, message: %@", dataBase.lastErrorMessage);
-        return 0;
-    }
-    
-    int number = 0;    
-    FMResultSet * resultSet = [dataBase executeQuery:@"SELECT * FROM t_product WHERE SINGLEID = ? AND PROPERTY = ? AND WAGE = ?;", @(info.singleID), info.property, info.wage];
-    while ([resultSet next])
-    {
-        number = [resultSet intForColumnIndex:3];
-    }
-    [dataBase close];
-    NSLog(@"examine success");
-    return number;
-}
 
-//检查是否有此条数据
-+ (BOOL)checkIsThereSomeOneProductWithProduct:(productInfo *)info
-{
-    NSString * doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString * fileName = [doc stringByAppendingPathComponent:@"fmd.sqlite"];
-    FMDatabase * dataBase = [FMDatabase databaseWithPath:fileName];
-    if (![dataBase open])
-    {
-        NSLog(@"open error, message: %@", dataBase.lastErrorMessage);
-        return NO;
-    }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS t_product(ID INTEGER PRIMARY KEY AUTOINCREMENT, SINGLEID INT, NAME TEXT, COUNT INT, FEE TEXT, IMAGE TEXT, PROPERTY TEXT, WAGE TEXT)"];
-    if (!create)
-    {
-        [dataBase close];
-        NSLog(@"create error, message: %@", dataBase.lastErrorMessage);
-        return NO;
-    }
-    
-    BOOL isHave = NO;
-    FMResultSet * resultSet = [dataBase executeQuery:@"SELECT * FROM t_product WHERE SINGLEID = ? AND PROPERTY = ? AND WAGE = ?;", @(info.singleID), info.property, info.wage];
-    while ([resultSet next])
-    {
-        isHave = YES;
-    }
-    [dataBase close];
-    return isHave;
-}
+
+
+
+
+
 
 
 /*- (void)withDataBase:(FMDatabase *)db
@@ -247,7 +188,7 @@
 - (void)query
 {
     //销毁命令SQLdrop ...//如果表格存在 则销毁
-    [db executeUpdate:@"drop table if exists t_product"];
+    [db executeUpdate:@"drop table if exists PW_TABLE"];
     
     
   
@@ -264,9 +205,9 @@
     __block BOOL whoopsSomethingWrongHappend = true;
     //把任务包装到事务里
     [queue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-        whoopsSomethingWrongHappend &= [db executeUpdate:@"INSERT INTO t_product VALUES (?)", [NSNumber numberWithInt:1]]; 
-        whoopsSomethingWrongHappend &= [db executeUpdate:@"INSERT INTO t_product VALUES (?)", [NSNumber numberWithInt:2]];
-        whoopsSomethingWrongHappend &= [db executeUpdate:@"INSERT INTO t_product VALUES (?)", [NSNumber numberWithInt:3]];
+        whoopsSomethingWrongHappend &= [db executeUpdate:@"INSERT INTO PW_TABLE VALUES (?)", [NSNumber numberWithInt:1]];
+        whoopsSomethingWrongHappend &= [db executeUpdate:@"INSERT INTO PW_TABLE VALUES (?)", [NSNumber numberWithInt:2]];
+        whoopsSomethingWrongHappend &= [db executeUpdate:@"INSERT INTO PW_TABLE VALUES (?)", [NSNumber numberWithInt:3]];
         
         //如果有错误，返回
         if (!whoopsSomethingWrongHappend)
@@ -291,7 +232,7 @@
             BOOL result = [database executeUpdate:sql,num,name,sex]; 
             if ( !result )
             { 
-                NSLog(@"插入失败！");
+                XMGLog(@"插入失败！");
                 return; 
             } 
         } 

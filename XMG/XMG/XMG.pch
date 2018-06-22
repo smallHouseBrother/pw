@@ -88,6 +88,7 @@ QQ/Qzone  |   需要添加两项URL Scheme：    |  如appID：100424468   |  QQ
 #import "NSString+XMGDynamic.h"
 #import "NSString+Check.h"
 #import "XMGSingleton.h"
+#import "FMDB_Tool.h"
 
 #import "NSString+urlEncode.h"
 #import "NSString+Base64.h"
