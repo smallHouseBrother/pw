@@ -7,8 +7,9 @@
 //
 
 #import "AddPWViewController.h"
+#import "AddPWView.h"
 
-@interface AddPWViewController ()
+@interface AddPWViewController () <AddPWViewDelegate>
 
 @end
 
@@ -21,34 +22,32 @@
     [self setNavigation];
     
     [self addSubViews];
-    
-    [self queryData];
 }
 
 - (void)setNavigation
 {
-    [self setBackItem];
+    self.title = @"新增";
     
+    UIBarButtonItem * left = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:0 target:self action:@selector(giveUpToAddPW)];
+    self.navigationItem.leftBarButtonItem = left;
     
-    
-    UIBarButtonItem * left = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@""] style:0 target:self action:@selector(giveUpToAddPW)];
-    self.navigationItem.rightBarButtonItem = left;
-    
-    UIBarButtonItem * right = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addPassWordRecord)];
+    UIBarButtonItem * right = [[UIBarButtonItem alloc] initWithTitle:@"保存" style:0 target:self action:@selector(saveCurrentContent)];
     self.navigationItem.rightBarButtonItem = right;
 }
 
 - (void)addSubViews
 {
-    
+    AddPWView * selfView = [[AddPWView alloc] initWithVC:self];
+    selfView.aDelegate = self;
+    self.view = selfView;
 }
 
-- (void)queryData
+- (void)giveUpToAddPW
 {
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)addPassWordRecord
+- (void)saveCurrentContent
 {
     
 }

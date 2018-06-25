@@ -7,11 +7,11 @@
 //
 
 #import "CategoryListViewController.h"
-#import "CategoryListViewView.h"
+#import "CategoryListView.h"
 #import "AddPWViewController.h"
 #import "RootInfo.h"
 
-@interface CategoryListViewController () <CategoryListViewViewDelegate>
+@interface CategoryListViewController () <CategoryListViewDelegate>
 
 @end
 
@@ -40,20 +40,22 @@
 
 - (void)addSubViews
 {
-    CategoryListViewView * selfView = [[CategoryListViewView alloc] init];
+    CategoryListView * selfView = [[CategoryListView alloc] init];
     selfView.delegate = self;
     self.view = selfView;
 }
 
 - (void)queryData
 {
-    
+    NSArray * dataArray = [FMDB_Tool querySingleTypeAllDataFromDataBaseWithType:self.info.typeId];
+    [(CategoryListView *)self.view reloadCategoryListTableWithArray:dataArray withVC:self];
 }
 
 - (void)addPassWordRecord
 {
     AddPWViewController * addPW = [[AddPWViewController alloc] init];
-    [self.navigationController presentViewController:addPW animated:YES completion:nil];
+    XGNavigationController * addPwNavi = [[XGNavigationController alloc] initWithRootViewController:addPW];
+    [self.navigationController presentViewController:addPwNavi animated:YES completion:nil];
 }
 
 @end

@@ -103,7 +103,6 @@
         RootInfo * info = [[RootInfo alloc] init];
         info.titleString = titleArray[i];
         info.imageName = [NSString stringWithFormat:@"password%@", @(i)];
-        info.detailString = info.titleString;
         info.accountNum = @"1";
         [dataArray addObject:info];
     }

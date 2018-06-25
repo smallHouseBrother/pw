@@ -10,11 +10,12 @@
 
 @interface RootInfo : NSObject
 
+
+///类型
+@property (nonatomic) NSInteger typeId;
+
 ///类型
 @property (nonatomic, copy) NSString * titleString;
-
-///最后一条编辑的内容
-@property (nonatomic, copy) NSString * detailString;
 
 ///icon名
 @property (nonatomic, copy) NSString * imageName;

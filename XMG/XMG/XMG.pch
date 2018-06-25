@@ -38,6 +38,10 @@
 #define chaPageId @"ca-app-pub-3940256099942544/4411468910"
 
 #define Icon_Color COLOR_HEX(@"#f4a85e")
+
+#define Border_Color COLOR_HEX(@"#AAAAAA")
+#define Line_Color COLOR_HEX(@"#CCCCCC")
+
 #define Screen_Scale [UIScreen mainScreen].scale
 
 #define Encode_key     @"e10adc3949ba59abbe56e057f20f883e"
@@ -84,6 +88,7 @@ QQ/Qzone  |   需要添加两项URL Scheme：    |  如appID：100424468   |  QQ
 #import "UIImageView+WebCache.h"
 #import "NSObject+XMGReviewNull.h"
 #import "UINavigationController+XMG.h"
+#import "XGNavigationController.h"
 #import "MBProgressHUD+XMG.h"
 #import "NSString+XMGDynamic.h"
 #import "NSString+Check.h"

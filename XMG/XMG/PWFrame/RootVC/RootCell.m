@@ -13,7 +13,6 @@
 {
     UIImageView * _imageView;
     UILabel     * _titleName;
-    UILabel     * _detailTitle;
     UILabel     * _accountNum;
 }
 @end
@@ -45,13 +44,7 @@
     _titleName.textColor = [UIColor blackColor];
     _titleName.font = [UIFont systemFontOfSize:15];
     [self.contentView addSubview:_titleName];
-    _titleName.sd_layout.leftSpaceToView(_imageView, 15).centerYEqualToView(_imageView).offset(-10).widthIs(100).heightIs(20);
-    
-    _detailTitle = [[UILabel alloc] init];
-    _detailTitle.textColor = COLOR_HEX(@"#9f9f9f");
-    _detailTitle.font = [UIFont systemFontOfSize:13];
-    [self.contentView addSubview:_detailTitle];
-    _detailTitle.sd_layout.leftEqualToView(_titleName).centerYEqualToView(_imageView).offset(10).rightEqualToView(self.contentView).heightIs(17);
+    _titleName.sd_layout.leftSpaceToView(_imageView, 15).centerYEqualToView(_imageView).widthIs(100).heightIs(20);
     
     _accountNum = [[UILabel alloc] init];
     _accountNum.textColor = COLOR_HEX(@"EF7700");
@@ -66,7 +59,6 @@
 {
     _imageView.image = [UIImage imageNamed:info.imageName];
     _titleName.text = info.titleString;
-    _detailTitle.text = info.detailString;
     _accountNum.text = [NSString stringWithFormat:@"%@", info.accountNum];
 }
 

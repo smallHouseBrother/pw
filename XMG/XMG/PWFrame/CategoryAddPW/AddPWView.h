@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddPWView : UIView
+@protocol AddPWViewDelegate <NSObject>
+
+@end
+
+@interface AddPWView : UIScrollView
+
+@property (nonatomic, weak) id <AddPWViewDelegate> aDelegate;
+
+- (instancetype)initWithVC:(UIViewController *)VC;
 
 @end
