@@ -40,7 +40,7 @@
 #define Icon_Color COLOR_HEX(@"#f4a85e")
 
 #define Border_Color COLOR_HEX(@"#AAAAAA")
-#define Line_Color COLOR_HEX(@"#CCCCCC")
+#define Line_Color COLOR_HEX(@"#DBDBDB")
 
 #define Screen_Scale [UIScreen mainScreen].scale
 
@@ -66,7 +66,20 @@ QQ/Qzone  |   需要添加两项URL Scheme：    |  如appID：100424468   |  QQ
           |  转换成十六进制（不足8位前面补0）|                       |
 新浪微博   |  “wb”+新浪appKey             | wb3921700954          |
 支付宝     |   “ap”+appID                |   ap2015111700822536  | URL Type中的identifier填"alipayShare"
-*/
+ 
+ /*
+ CGFloat height = ScreenHeight - 64;
+ if (iPhoneX)
+ {
+ height = ScreenHeight - 88 - 34;
+ }
+ self.contentSize = CGSizeMake(0, height + 0.3);
+ */
+
+
+#define nowTimestamp [[NSDate date] timeIntervalSince1970] + [[NSTimeZone systemTimeZone] secondsFromGMTForDate:[NSDate date]]
+
+
 #define ScreenHeight [UIScreen mainScreen].bounds.size.height
 #define ScreenWidth  [UIScreen mainScreen].bounds.size.width
 
@@ -80,6 +93,7 @@ QQ/Qzone  |   需要添加两项URL Scheme：    |  如appID：100424468   |  QQ
 #define App_Version [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
 #define App_IconArray [[NSBundle mainBundle] infoDictionary][@"CFBundleIcons"][@"CFBundlePrimaryIcon"][@"CFBundleIconFiles"]
 
+#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "SDAutoLayout.h"
 #import "UIColor+XMGColor.h"
 #import "UIAlertView+Delay.h"
@@ -92,6 +106,7 @@ QQ/Qzone  |   需要添加两项URL Scheme：    |  如appID：100424468   |  QQ
 #import "MBProgressHUD+XMG.h"
 #import "NSString+XMGDynamic.h"
 #import "NSString+Check.h"
+#import "XMGActionSheet.h"
 #import "XMGSingleton.h"
 #import "FMDB_Tool.h"
 

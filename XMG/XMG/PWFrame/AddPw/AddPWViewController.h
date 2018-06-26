@@ -8,6 +8,11 @@
 
 #import "XGBaseViewController.h"
 
+@class PassWordInfo;
+
 @interface AddPWViewController : XGBaseViewController
+
+///查看，nil为新增
+@property (nonatomic, strong) PassWordInfo * info;
 
 @end

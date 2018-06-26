@@ -10,7 +10,6 @@
 
 @interface RootInfo : NSObject
 
-
 ///类型
 @property (nonatomic) NSInteger typeId;
 
@@ -21,6 +20,6 @@
 @property (nonatomic, copy) NSString * imageName;
 
 ///账户数量
-@property (nonatomic, copy) NSString * accountNum;
+@property (nonatomic) NSInteger accountNum;
 
 @end

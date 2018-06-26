@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = COLOR_HEX(@"#f5f5f5");
+    self.view.backgroundColor = COLOR_HEX(@"#f0eef4");
     
     self.navigationController.interactivePopGestureRecognizer.delegate = self;
 }

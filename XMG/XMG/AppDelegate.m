@@ -10,7 +10,6 @@
 #import <UMMobClick/MobClick.h>
 #import <UShareUI/UShareUI.h>
 #import <Bugly/Bugly.h>
-#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "RootViewController.h"
 #import "AuthViewController.h"
 

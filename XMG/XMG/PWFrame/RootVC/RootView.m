@@ -9,7 +9,6 @@
 #import "RootView.h"
 #import "RootCell.h"
 #import "RootInfo.h"
-#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface RootView () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -33,7 +32,7 @@
 - (void)addSubViews
 {
     _tableView = [[UITableView alloc] init];
-    _tableView.backgroundColor = COLOR_HEX(@"#f5f5f5");
+    _tableView.backgroundColor = COLOR_HEX(@"#f0eef4");
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 88, 0);
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -47,7 +46,7 @@
 - (void)reloadRootTableWithArray:(NSArray *)dataArray withVC:(UIViewController *)rootVC
 {
     _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait];
-    _bannerView.backgroundColor = COLOR_HEX(@"#f5f5f5");
+    _bannerView.backgroundColor = [UIColor clearColor];
     _bannerView.rootViewController = rootVC;
     _bannerView.adUnitID = textId;
     [self addSubview:_bannerView];

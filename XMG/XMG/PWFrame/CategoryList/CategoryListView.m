@@ -9,13 +9,13 @@
 #import "CategoryListView.h"
 #import "CategoryListCell.h"
 #import "PassWordInfo.h"
-#import <GoogleMobileAds/GoogleMobileAds.h>
 
 @interface CategoryListView () <UITableViewDelegate, UITableViewDataSource>
 {
     GADBannerView * _bannerView;
     UITableView   * _tableView;
     NSArray       * _dataArray;
+    UIImageView   * _imageView;
 }
 @end
 
@@ -35,7 +35,7 @@
 {
     _tableView = [[UITableView alloc] init];
     _tableView.tableFooterView = [[UIView alloc] init];
-    _tableView.backgroundColor = COLOR_HEX(@"#f5f5f5");
+    _tableView.backgroundColor = COLOR_HEX(@"#f0eef4");
     _tableView.contentInset = UIEdgeInsetsMake(0, 0, 88, 0);
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -44,12 +44,16 @@
     _tableView.sd_layout.spaceToSuperView(UIEdgeInsetsZero);
     
     [_tableView registerClass:[CategoryListCell class] forCellReuseIdentifier:@"CategoryListCell"];
+    
+    UIImageView * imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no_Content"]];
+    [self addSubview:_imageView = imageView];
+    imageView.sd_layout.centerXEqualToView(self).centerYEqualToView(self);
 }
 
 - (void)reloadCategoryListTableWithArray:(NSArray *)dataArray withVC:(UIViewController *)rootVC
 {
     _bannerView = [[GADBannerView alloc] initWithAdSize:kGADAdSizeSmartBannerPortrait];
-    _bannerView.backgroundColor = COLOR_HEX(@"#f5f5f5");
+    _bannerView.backgroundColor = [UIColor clearColor];
     _bannerView.rootViewController = rootVC;
     _bannerView.adUnitID = textId;
     [self addSubview:_bannerView];
@@ -58,6 +62,8 @@
     CGFloat bottom = 0; if (iPhoneX) bottom = 34;
     _bannerView.sd_layout.leftEqualToView(self).bottomSpaceToView(self, bottom).rightEqualToView(self).heightIs(50);
 
+    _imageView.hidden = (dataArray.count != 0);
+    
     _dataArray = [dataArray copy];
     
     [_tableView reloadData];

@@ -1,23 +1,23 @@
 //
-//  RootCell.m
+//  CategoryListCell.m
 //  XMG
 //
-//  Created by 马红杰 on 2018/5/31.
+//  Created by jrweid on 2018/6/25.
 //  Copyright © 2018年 小马哥. All rights reserved.
 //
 
-#import "RootCell.h"
-#import "RootInfo.h"
+#import "CategoryListCell.h"
+#import "PassWordInfo.h"
 
-@interface RootCell ()
+@interface CategoryListCell ()
 {
     UIImageView * _imageView;
     UILabel     * _titleName;
-    UILabel     * _accountNum;
 }
 @end
 
-@implementation RootCell
+@implementation CategoryListCell
+
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -25,6 +25,8 @@
     if (self)
     {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        self.contentView.backgroundColor = [UIColor whiteColor];
         
         [self addSubViews];
     }
@@ -34,7 +36,7 @@
 - (void)addSubViews
 {
     _imageView = [[UIImageView alloc] init];
-    _imageView.layer.cornerRadius = 5.f;
+    _imageView.layer.cornerRadius = 5.0f;
     _imageView.layer.masksToBounds = YES;
     [self.contentView addSubview:_imageView];
     _imageView.sd_layout.leftSpaceToView(self.contentView, 15).
@@ -44,22 +46,14 @@
     _titleName.textColor = [UIColor blackColor];
     _titleName.font = [UIFont systemFontOfSize:17];
     [self.contentView addSubview:_titleName];
-    _titleName.sd_layout.leftSpaceToView(_imageView, 15).centerYEqualToView(_imageView).widthIs(100).heightIs(20);
-    
-    _accountNum = [[UILabel alloc] init];
-    _accountNum.textColor = COLOR_HEX(@"EF7700");
-    _accountNum.font = [UIFont systemFontOfSize:24];
-    _accountNum.textAlignment = NSTextAlignmentRight;
-    [self.contentView addSubview:_accountNum];
-    _accountNum.sd_layout.rightEqualToView(self.contentView).
-    centerYEqualToView(self.contentView).widthIs(100).heightIs(50);
+    _titleName.sd_layout.leftSpaceToView(_imageView, 15).centerYEqualToView(self.contentView).rightSpaceToView(self.contentView, 15).heightIs(44);
 }
 
-- (void)reloadRootCellWithInfo:(RootInfo *)info
+- (void)reloadCategoryListCellWithInfo:(PassWordInfo *)info
 {
-    _imageView.image = [UIImage imageNamed:info.imageName];
-    _titleName.text = info.titleString;
-    _accountNum.text = [NSString stringWithFormat:@"%@", @(info.accountNum)];
+    NSString * imageName = [NSString stringWithFormat:@"password%@", @(info.typeId)];
+    _imageView.image = [UIImage imageNamed:imageName];
+    _titleName.text = info.titleName;
 }
 
 @end

@@ -6,7 +6,6 @@
 //  Copyright © 2018年 小马哥. All rights reserved.
 //
 
-#import <GoogleMobileAds/GoogleMobileAds.h>
 #import "UIViewController+CWLateralSlide.h"
 #import "SearchResultViewController.h"
 #import "CategoryListViewController.h"
@@ -95,15 +94,14 @@
 
 - (void)requestData
 {
-    
-#warning here shuliang
     NSArray * titleArray = @[@"网站", @"邮件", @"游戏", @"社交", @"银行", @"其他"];
     NSMutableArray * dataArray = [NSMutableArray arrayWithCapacity:titleArray.count];
     for (NSInteger i = 0; i < titleArray.count; i++) {
         RootInfo * info = [[RootInfo alloc] init];
         info.titleString = titleArray[i];
+        info.typeId = i;
         info.imageName = [NSString stringWithFormat:@"password%@", @(i)];
-        info.accountNum = @"1";
+        info.accountNum = [FMDB_Tool querySingleTypeNumFromDataBaseWithType:i];
         [dataArray addObject:info];
     }
     [self.selfView reloadRootTableWithArray:dataArray withVC:self];
@@ -126,18 +124,15 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
+
+
 #warning here sousuo result
 
 #pragma mark - UISearchBarDelegate
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    
-}
-
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{}
 #pragma mark - UISearchResultsUpdating
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    
     NSString *inputStr = searchController.searchBar.text ;
     NSLog(@"%@+++++++++++++", inputStr);
     /*if (self.results.count > 0) {
@@ -153,19 +148,21 @@
     
     [self.tableView reloadData];*/
 }
-
-
-#warning here advertise pinlv
 #pragma mark - RootViewDelegate
 - (void)RootViewDidSelectInfo:(RootInfo *)info
 {
-    if ([self.interstitial isReady]) {
-        [self.interstitial presentFromRootViewController:self];
-    }
+//    if ([self.interstitial isReady]) {
+//        [self.interstitial presentFromRootViewController:self];
+//    }
     CategoryListViewController * listVC = [[CategoryListViewController alloc] init];
     listVC.info = info;
     [self.navigationController pushViewController:listVC animated:YES];
 }
+
+
+
+
+
 
 - (GADInterstitial *)createAndLoadInterstitial
 {
@@ -186,7 +183,6 @@
     MoreViewController * more = [[MoreViewController alloc] init];
     [self cw_showDrawerViewController:more animationType:CWDrawerAnimationTypeDefault configuration:[CWLateralSlideConfiguration defaultConfiguration]];
 }
-
 
 #pragma mark - 自定义处理手势冲突接口
 - (BOOL)cw_gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer

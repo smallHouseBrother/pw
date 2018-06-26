@@ -35,7 +35,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
     
     if (!create)
     {
@@ -44,7 +44,7 @@
         return NO;
     }
     
-    BOOL insert = [dataBase executeUpdate:@"INSERT INTO PW_TABLE(TYPEID, PWID, TITLE, ACCOUNT, PASSWORD, BEIZHU, IMAGE) VALUES (?,?,?,?,?,?,?);", @(info.typeId), @(info.pwId), info.titleName, info.account, info.passWord, info.beiZhu, info.imageData];
+    BOOL insert = [dataBase executeUpdate:@"INSERT INTO PW_TABLE(TYPEID, PWID, TITLE, WEBSITE, ACCOUNT, PASSWORD, BEIZHU, IMAGE) VALUES (?,?,?,?,?,?,?,?);", @(info.typeId), @(info.pwId), info.titleName, info.webSite, info.account, info.passWord, info.beiZhu, info.imageData];
     
     if (!insert)
     {
@@ -63,7 +63,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return nil;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
     if (!create)
     {
         [dataBase close];
@@ -79,10 +79,11 @@
         info.typeId = [resultSet intForColumnIndex:1];
         info.pwId = [resultSet intForColumnIndex:2];
         info.titleName = [resultSet objectForColumnIndex:3];
-        info.account = [resultSet objectForColumnIndex:4];
-        info.passWord = [resultSet objectForColumnIndex:5];
-        info.beiZhu = [resultSet objectForColumnIndex:6];
-        info.imageData = [resultSet dataForColumnIndex:7];
+        info.webSite = [resultSet objectForColumnIndex:4];
+        info.account = [resultSet objectForColumnIndex:5];
+        info.passWord = [resultSet objectForColumnIndex:6];
+        info.beiZhu = [resultSet objectForColumnIndex:7];
+        info.imageData = [resultSet dataForColumnIndex:8];
         [backArray addObject:info];
     }
     [dataBase close];
@@ -99,7 +100,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
     if (!create)
     {
         [dataBase close];
@@ -125,7 +126,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
     if (!create)
     {
         [dataBase close];
@@ -133,7 +134,7 @@
         return NO;
     }
 
-    BOOL update = [dataBase executeUpdate:@"UPDATE PW_TABLE SET TITLE = ?, ACCOUNT = ?, PASSWORD = ?, BEIZHU = ?, IMAGE = ? WHERE TYPEID = ? AND PWID = ?;", info.titleName, info.account, info.passWord, info.beiZhu, info.imageData, @(info.typeId), @(info.pwId)];
+    BOOL update = [dataBase executeUpdate:@"UPDATE PW_TABLE SET TITLE = ?, WEBSITE = ?, ACCOUNT = ?, PASSWORD = ?, BEIZHU = ?, IMAGE = ? WHERE TYPEID = ? AND PWID = ?;", info.titleName, info.webSite, info.account, info.passWord, info.beiZhu, info.imageData, @(info.typeId), @(info.pwId)];
     if (!update)
     {
         XMGLog(@"update error :%@", dataBase.lastErrorMessage);
@@ -151,7 +152,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return 0;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
     if (!create)
     {
         [dataBase close];

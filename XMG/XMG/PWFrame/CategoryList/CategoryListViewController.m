@@ -12,7 +12,6 @@
 #import "RootInfo.h"
 
 @interface CategoryListViewController () <CategoryListViewDelegate>
-
 @end
 
 @implementation CategoryListViewController
@@ -56,6 +55,13 @@
     AddPWViewController * addPW = [[AddPWViewController alloc] init];
     XGNavigationController * addPwNavi = [[XGNavigationController alloc] initWithRootViewController:addPW];
     [self.navigationController presentViewController:addPwNavi animated:YES completion:nil];
+}
+
+- (void)checkTheSelectedDetailWithInfo:(PassWordInfo *)info
+{
+    AddPWViewController * addPW = [[AddPWViewController alloc] init];
+    addPW.info = info;
+    [self.navigationController pushViewController:addPW animated:YES];
 }
 
 @end

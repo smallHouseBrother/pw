@@ -16,6 +16,8 @@
 
 @property (nonatomic, copy) NSString * titleName;
 
+@property (nonatomic, copy) NSString * webSite;
+
 @property (nonatomic, copy) NSString * account;
 
 @property (nonatomic, copy) NSString * passWord;
