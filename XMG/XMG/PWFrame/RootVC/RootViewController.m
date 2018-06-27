@@ -16,7 +16,7 @@
 #import "RootCell.h"
 #import "RootInfo.h"
 
-@interface RootViewController () <RootViewDelegate, GADInterstitialDelegate, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating>
+@interface RootViewController () <RootViewDelegate, GADInterstitialDelegate, CategoryListViewControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating>
 
 @property (nonatomic, strong) SearchResultViewController * searchResult;
 
@@ -25,6 +25,8 @@
 @property (nonatomic, strong) GADInterstitial * interstitial;
 
 @property (nonatomic, strong) SearchBackView * backView;
+
+@property (nonatomic, strong) NSArray * dataArray;
 
 @property (nonatomic, strong) RootView * selfView;
 
@@ -104,7 +106,8 @@
         info.accountNum = [FMDB_Tool querySingleTypeNumFromDataBaseWithType:i];
         [dataArray addObject:info];
     }
-    [self.selfView reloadRootTableWithArray:dataArray withVC:self];
+    self.dataArray = [dataArray copy];
+    [self.selfView reloadRootTableWithArray:self.dataArray withVC:self];
 }
 
 #pragma mark - UISearchControllerDelegate
@@ -155,14 +158,19 @@
 //        [self.interstitial presentFromRootViewController:self];
 //    }
     CategoryListViewController * listVC = [[CategoryListViewController alloc] init];
-    listVC.info = info;
+    listVC.info = info; listVC.delegate = self;
     [self.navigationController pushViewController:listVC animated:YES];
 }
 
-
-
-
-
+#pragma mark - CategoryListViewControllerDelegate
+- (void)returnCurrentTypeWithType:(NSInteger)typeId withNum:(NSInteger)typeNum
+{
+    NSIndexPath * indexPath = [NSIndexPath indexPathForRow:typeId inSection:0];
+    RootCell * cell = [self.selfView.tableView cellForRowAtIndexPath:indexPath];
+    RootInfo * info = [self.dataArray objectAtIndex:typeId];
+    info.accountNum = typeNum;
+    [cell reloadRootCellWithInfo:info];
+}
 
 - (GADInterstitial *)createAndLoadInterstitial
 {

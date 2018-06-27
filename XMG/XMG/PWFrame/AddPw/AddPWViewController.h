@@ -10,9 +10,21 @@
 
 @class PassWordInfo;
 
+@protocol AddPWViewControllerDelegate <NSObject>
+
+- (void)returnAddedPassWordWithInfo:(PassWordInfo *)info withIsEdit:(BOOL)isEdit;
+
+@end
+
 @interface AddPWViewController : XGBaseViewController
 
-///查看，nil为新增
+///查看
 @property (nonatomic, strong) PassWordInfo * info;
+
+///新增所属类型
+@property (nonatomic) NSInteger typeId;
+
+
+@property (nonatomic, weak) id <AddPWViewControllerDelegate> delegate;
 
 @end

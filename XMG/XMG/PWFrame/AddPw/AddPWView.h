@@ -20,8 +20,8 @@
 
 @property (nonatomic, weak) id <AddPWViewDelegate> delegate;
 
-- (void)reloadAddPWCellWithArray:(NSArray *)dataArray withVC:(UIViewController *)rootVC;
+@property (nonatomic, strong) UIImageView * photoImg;
 
-- (void)reloadSelectedPhotoWithImage:(UIImage *)image;
+- (void)reloadAddPWCellWithArray:(NSArray *)dataArray withVC:(UIViewController *)rootVC;
 
 @end

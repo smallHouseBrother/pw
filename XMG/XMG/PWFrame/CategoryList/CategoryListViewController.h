@@ -10,8 +10,16 @@
 
 @class RootInfo;
 
+@protocol CategoryListViewControllerDelegate <NSObject>
+
+- (void)returnCurrentTypeWithType:(NSInteger)typeId withNum:(NSInteger)typeNum;
+
+@end
+
 @interface CategoryListViewController : XGBaseViewController
 
 @property (nonatomic, strong) RootInfo * info;
+
+@property (nonatomic, weak) id <CategoryListViewControllerDelegate> delegate;
 
 @end

@@ -28,6 +28,6 @@
 
 @property (nonatomic, copy) NSString * beiZhu;
 
-@property (nonatomic) NSData * imageData;
+@property (nonatomic, strong) NSData * imageData;
 
 @end

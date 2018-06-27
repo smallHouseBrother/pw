@@ -14,6 +14,8 @@
 
 - (void)checkTheSelectedDetailWithInfo:(PassWordInfo *)info;
 
+- (void)deleteSelectedPassWOrdWithIndex:(NSInteger)index;
+
 @end
 
 @interface CategoryListView : UIView

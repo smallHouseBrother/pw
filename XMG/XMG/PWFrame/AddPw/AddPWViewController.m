@@ -17,9 +17,12 @@ static char Web_Jump_Key;
 
 @interface AddPWViewController () <AddPWViewDelegate, XMGActionSheetDelegate>
 {
-    NSDateFormatter * _formatter;
-    NSArray         * _dataArray;
+    AddPWView * _selfView;
+    NSArray   * _dataArray;
 }
+
+@property (nonatomic, strong) NSDateFormatter * formatter;
+
 @end
 
 @implementation AddPWViewController
@@ -58,7 +61,7 @@ static char Web_Jump_Key;
 {
     AddPWView * selfView = [[AddPWView alloc] init];
     selfView.delegate = self;
-    self.view = selfView;
+    self.view = _selfView = selfView;
     
     NSArray * titleArray = @[@[@"标题：", @"网址：", @"账户：", @"密码："], @[@"备注："]];
     NSArray * inputArray = nil;
@@ -82,17 +85,6 @@ static char Web_Jump_Key;
     [selfView reloadAddPWCellWithArray:_dataArray = dataArray withVC:self];
 }
 
-- (void)giveUpToAddPW
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-///编辑
-- (void)editCurrentContent
-{
-    
-}
-
 ///保存
 - (void)saveCurrentContent
 {
@@ -111,30 +103,38 @@ static char Web_Jump_Key;
         }
     }
     
-    _formatter = [[NSDateFormatter alloc] init];
-    [_formatter setDateFormat:@"yyyy年MM月dd HH:mm:ss"];
-    _formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT+0800"];
-    NSString * nowTime = [_formatter stringFromDate:[NSDate date]];
-    
     PassWordInfo * info = [[PassWordInfo alloc] init];
     info.titleName = [backArray firstObject];
     info.webSite = backArray[1];
     info.account = backArray[2];
     info.passWord = backArray[3];
     info.beiZhu = [backArray lastObject];
-    info.createTime = nowTime;
-    info.typeId = self.info.typeId;
-    info.pwId = nowTimestamp;
-    info.isEdit = YES;
-    
-    
+    info.createTime = [self.formatter stringFromDate:[NSDate date]];
+    info.typeId = self.info.typeId ?: self.typeId;
+    info.pwId = self.info.pwId ?: nowTimestamp;
+    info.isEdit = self.info ? YES : NO;
+    info.imageData = UIImagePNGRepresentation(_selfView.photoImg.image);
     
     if ([FMDB_Tool insertSingleDataToDataBaseWithInfo:info]) {
-        NSLog(@"插入成功");
-    } else
-    {
-        NSLog(@"插入失败");
+        [self.delegate returnAddedPassWordWithInfo:info withIsEdit:self.info];
+        if (self.info)
+        {
+            XMGLog(@"更新成功");
+            [super backAction];
+        }
+        else
+        {
+            XMGLog(@"插入成功");
+            [self giveUpToAddPW];
+        }
     }
+}
+
+#warning here
+///编辑
+- (void)editCurrentContent
+{
+    
 }
 
 #pragma mark - AddPWViewDelegate 选择图片
@@ -160,6 +160,21 @@ static char Web_Jump_Key;
         XMGWebViewController * webVC = [[XMGWebViewController alloc] initWithTitle:@"" withUrl:webString];
         [self.navigationController pushViewController:webVC animated:YES];
     }
+}
+
+- (void)giveUpToAddPW
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (NSDateFormatter *)formatter
+{
+    if (!_formatter) {
+        _formatter = [[NSDateFormatter alloc] init];
+        [_formatter setDateFormat:@"yyyy年MM月dd HH:mm:ss"];
+        _formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT+0800"];
+    }
+    return _formatter;
 }
 
 @end

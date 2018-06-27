@@ -18,7 +18,6 @@ static char webJumpKey;
     GADBannerView * _bannerView;
     UITableView   * _tableView;
     NSArray       * _dataArray;
-    UIImageView   * _photoImg;
 }
 @end
 
@@ -72,11 +71,6 @@ static char webJumpKey;
 - (void)checkThisPhoto
 {
     [self.delegate AddPWViewSelectPhoto];
-}
-
-- (void)reloadSelectedPhotoWithImage:(UIImage *)image
-{
-    _photoImg.image = image;
 }
 
 ///网站跳转
