@@ -14,6 +14,10 @@
 
 @property (nonatomic) NSInteger pwId;
 
+@property (nonatomic, copy) NSString * createTime;
+
+@property (nonatomic) BOOL isEdit;
+
 @property (nonatomic, copy) NSString * titleName;
 
 @property (nonatomic, copy) NSString * webSite;

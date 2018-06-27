@@ -9,6 +9,7 @@
 #import "FMDB_Tool.h"
 #import <FMDB.h>
 #import "PassWordInfo.h"
+#import "AESCrypt.h"
 
 @implementation FMDB_Tool
 
@@ -35,7 +36,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, ENCRYPTED TEXT)"];
     
     if (!create)
     {
@@ -44,7 +45,9 @@
         return NO;
     }
     
-    BOOL insert = [dataBase executeUpdate:@"INSERT INTO PW_TABLE(TYPEID, PWID, TITLE, WEBSITE, ACCOUNT, PASSWORD, BEIZHU, IMAGE) VALUES (?,?,?,?,?,?,?,?);", @(info.typeId), @(info.pwId), info.titleName, info.webSite, info.account, info.passWord, info.beiZhu, info.imageData];
+    NSString * encrypted = [FMDB_Tool getEncryptedStringWithInfo:info];
+    
+    BOOL insert = [dataBase executeUpdate:@"INSERT INTO PW_TABLE(TYPEID, PWID, ENCRYPTED) VALUES (?,?,?);", @(info.typeId), @(info.pwId), encrypted];
     
     if (!insert)
     {
@@ -63,7 +66,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return nil;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, ENCRYPTED TEXT)"];
     if (!create)
     {
         [dataBase close];
@@ -78,12 +81,15 @@
         PassWordInfo * info = [[PassWordInfo alloc] init];
         info.typeId = [resultSet intForColumnIndex:1];
         info.pwId = [resultSet intForColumnIndex:2];
-        info.titleName = [resultSet objectForColumnIndex:3];
-        info.webSite = [resultSet objectForColumnIndex:4];
-        info.account = [resultSet objectForColumnIndex:5];
-        info.passWord = [resultSet objectForColumnIndex:6];
-        info.beiZhu = [resultSet objectForColumnIndex:7];
-        info.imageData = [resultSet dataForColumnIndex:8];
+        NSString * encrypted = [resultSet objectForColumnIndex:3];
+        NSDictionary * deCoded = [FMDB_Tool DecodeResponseDataWithResponse:encrypted];
+        info.createTime = [deCoded objectForKey:@"createTime"];
+        info.titleName = [deCoded objectForKey:@"titleName"];
+        info.webSite = [deCoded objectForKey:@"webSite"];
+        info.account = [deCoded objectForKey:@"account"];
+        info.passWord = [deCoded objectForKey:@"passWord"];
+        info.beiZhu = [deCoded objectForKey:@"beiZhu"];
+        info.imageData = [deCoded objectForKey:@"imageData"];
         [backArray addObject:info];
     }
     [dataBase close];
@@ -100,7 +106,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, ENCRYPTED TEXT)"];
     if (!create)
     {
         [dataBase close];
@@ -126,15 +132,17 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, ENCRYPTED TEXT)"];
     if (!create)
     {
         [dataBase close];
         XMGLog(@"create error, message: %@", dataBase.lastErrorMessage);
         return NO;
     }
-
-    BOOL update = [dataBase executeUpdate:@"UPDATE PW_TABLE SET TITLE = ?, WEBSITE = ?, ACCOUNT = ?, PASSWORD = ?, BEIZHU = ?, IMAGE = ? WHERE TYPEID = ? AND PWID = ?;", info.titleName, info.webSite, info.account, info.passWord, info.beiZhu, info.imageData, @(info.typeId), @(info.pwId)];
+    
+    NSString * encrypted = [FMDB_Tool getEncryptedStringWithInfo:info];
+    
+    BOOL update = [dataBase executeUpdate:@"UPDATE PW_TABLE SET ENCRYPTED = ? WHERE TYPEID = ? AND PWID = ?;", encrypted, @(info.typeId), @(info.pwId)];
     if (!update)
     {
         XMGLog(@"update error :%@", dataBase.lastErrorMessage);
@@ -152,7 +160,7 @@
         XMGLog(@"open error, message: %@", dataBase.lastErrorMessage);
         return 0;
     }
-    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, TITLE TEXT, WEBSITE TEXT, ACCOUNT TEXT, PASSWORD TEXT, BEIZHU TEXT, IMAGE DATA)"];
+    BOOL create = [dataBase executeUpdate:@"CREATE TABLE IF NOT EXISTS PW_TABLE(ID INTEGER PRIMARY KEY AUTOINCREMENT, TYPEID INT, PWID INT, ENCRYPTED TEXT)"];
     if (!create)
     {
         [dataBase close];
@@ -170,11 +178,31 @@
     return number;
 }
 
+///加密
++ (NSString *)getEncryptedStringWithInfo:(PassWordInfo *)info
+{
+    NSMutableDictionary * params = [NSMutableDictionary dictionary];
+    [params setValue:info.createTime forKey:@"createTime"];
+    [params setValue:info.titleName forKey:@"titleName"];
+    [params setValue:info.webSite forKey:@"webSite"];
+    [params setValue:info.account forKey:@"account"];
+    [params setValue:info.passWord forKey:@"passWord"];
+    [params setValue:info.beiZhu forKey:@"beiZhu"];
+    [params setValue:info.imageData forKey:@"imageData"];
+    NSData * data = [NSJSONSerialization dataWithJSONObject:params options:0 error:nil];
+    NSString * dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSString * base64 = [AESCrypt encrypt:dataString withKey:Encode_key withIv:Encrypt_Iv];
+    return base64;
+}
 
-
-
-
-
+///解密
++ (NSDictionary *)DecodeResponseDataWithResponse:(NSString *)encryptedString
+{
+    NSString * result = [AESCrypt decrypt:encryptedString withKey:Encode_key withIv:Encrypt_Iv];
+    NSData * backData = [result dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary * back = [NSJSONSerialization JSONObjectWithData:backData options:NSJSONReadingMutableContainers error:nil];
+    return back;
+}
 
 
 

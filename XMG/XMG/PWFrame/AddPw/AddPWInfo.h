@@ -16,6 +16,10 @@
 
 @property (nonatomic, copy) NSString * titleInput;
 
+@property (nonatomic, copy) NSString * editTime;
+
+@property (nonatomic) BOOL isEdit;
+
 @end
 
 //@property (nonatomic, strong) NSData * imageData;

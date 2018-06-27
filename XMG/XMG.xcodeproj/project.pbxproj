@@ -136,6 +136,7 @@
 		F769133520E243D40052B50F /* XMGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F769133320E243D40052B50F /* XMGWebViewController.m */; };
 		F769133820E246200052B50F /* password1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F769133620E246200052B50F /* password1@2x.png */; };
 		F769133920E246200052B50F /* password1@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = F769133720E246200052B50F /* password1@3x.png */; };
+		F769133C20E339C60052B50F /* NSDate+XMG.m in Sources */ = {isa = PBXBuildFile; fileRef = F769133B20E339C60052B50F /* NSDate+XMG.m */; };
 		F7CD59E920CFD51A0066C164 /* CWInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59DF20CFD51A0066C164 /* CWInteractiveTransition.m */; };
 		F7CD59EA20CFD51A0066C164 /* UIViewController+CWLateralSlide.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59E220CFD51A0066C164 /* UIViewController+CWLateralSlide.m */; };
 		F7CD59EB20CFD51A0066C164 /* CWLateralSlideAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F7CD59E520CFD51A0066C164 /* CWLateralSlideAnimator.m */; };
@@ -372,6 +373,8 @@
 		F769133420E243D40052B50F /* XMGWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMGWebViewController.h; sourceTree = "<group>"; };
 		F769133620E246200052B50F /* password1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password1@2x.png"; sourceTree = "<group>"; };
 		F769133720E246200052B50F /* password1@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password1@3x.png"; sourceTree = "<group>"; };
+		F769133A20E339C60052B50F /* NSDate+XMG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+XMG.h"; sourceTree = "<group>"; };
+		F769133B20E339C60052B50F /* NSDate+XMG.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+XMG.m"; sourceTree = "<group>"; };
 		F7CD59DF20CFD51A0066C164 /* CWInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CWInteractiveTransition.m; sourceTree = "<group>"; };
 		F7CD59E020CFD51A0066C164 /* CWDrawerTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWDrawerTransition.h; sourceTree = "<group>"; };
 		F7CD59E120CFD51A0066C164 /* CWLateralSlideAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CWLateralSlideAnimator.h; sourceTree = "<group>"; };
@@ -722,6 +725,8 @@
 				B936DE542019855900BE2529 /* NSObject+XMGReviewNull.m */,
 				B936DE7E2019855B00BE2529 /* NSString+Check.h */,
 				B936DE4B2019855900BE2529 /* NSString+Check.m */,
+				F769133A20E339C60052B50F /* NSDate+XMG.h */,
+				F769133B20E339C60052B50F /* NSDate+XMG.m */,
 				B936DE6F2019855A00BE2529 /* UIAlertController+Delay.h */,
 				B936DE772019855A00BE2529 /* UIAlertController+Delay.m */,
 				B936DE552019855A00BE2529 /* UIAlertView+Delay.h */,
@@ -1181,6 +1186,7 @@
 				B936DE912019855B00BE2529 /* NSData+CommonCrypto.m in Sources */,
 				B936DE932019855B00BE2529 /* NSString+MD5.m in Sources */,
 				F70745BA20DCACA400FE7779 /* RootCell.m in Sources */,
+				F769133C20E339C60052B50F /* NSDate+XMG.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

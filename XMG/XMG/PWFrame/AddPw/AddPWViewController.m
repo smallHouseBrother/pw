@@ -17,7 +17,8 @@ static char Web_Jump_Key;
 
 @interface AddPWViewController () <AddPWViewDelegate, XMGActionSheetDelegate>
 {
-    NSArray * _dataArray;
+    NSDateFormatter * _formatter;
+    NSArray         * _dataArray;
 }
 @end
 
@@ -39,6 +40,9 @@ static char Web_Jump_Key;
     if (self.info)
     {
         [self setBackItem];
+        
+        UIBarButtonItem * right = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:0 target:self action:@selector(editCurrentContent)];
+        self.navigationItem.rightBarButtonItem = right;
     }
     else
     {
@@ -67,6 +71,7 @@ static char Web_Jump_Key;
         NSMutableArray * sectionArray = [NSMutableArray array];
         for (NSInteger j = 0; j < section.count; j++) {
             AddPWInfo * info = [[AddPWInfo alloc] init];
+            info.editTime = self.info.createTime;
             info.leftTitle = section[j];
             info.titlePlace = [NSString stringWithFormat:@"%@信息～", [info.leftTitle substringToIndex:2]];
             info.titleInput = inputArray ? inputArray[i][j] : nil;
@@ -82,6 +87,13 @@ static char Web_Jump_Key;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+///编辑
+- (void)editCurrentContent
+{
+    
+}
+
+///保存
 - (void)saveCurrentContent
 {
     [self.view endEditing:YES];
@@ -99,15 +111,21 @@ static char Web_Jump_Key;
         }
     }
     
+    _formatter = [[NSDateFormatter alloc] init];
+    [_formatter setDateFormat:@"yyyy年MM月dd HH:mm:ss"];
+    _formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT+0800"];
+    NSString * nowTime = [_formatter stringFromDate:[NSDate date]];
+    
     PassWordInfo * info = [[PassWordInfo alloc] init];
     info.titleName = [backArray firstObject];
     info.webSite = backArray[1];
     info.account = backArray[2];
     info.passWord = backArray[3];
     info.beiZhu = [backArray lastObject];
-    info.typeId = 1;
+    info.createTime = nowTime;
+    info.typeId = self.info.typeId;
     info.pwId = nowTimestamp;
-    
+    info.isEdit = YES;
     
     
     
@@ -117,21 +135,6 @@ static char Web_Jump_Key;
     {
         NSLog(@"插入失败");
     }
-    
-    
-    /*typeId;
-    
-    @property (nonatomic) NSInteger pwId;
-    
-    @property (nonatomic, copy) NSString * titleName;
-    
-    @property (nonatomic, copy) NSString * account;
-    
-    @property (nonatomic, copy) NSString * passWord;
-    
-    @property (nonatomic, copy) NSString * beiZhu;
-    
-    @property (nonatomic) NSData * imageData;*/
 }
 
 #pragma mark - AddPWViewDelegate 选择图片

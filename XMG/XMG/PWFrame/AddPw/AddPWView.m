@@ -165,7 +165,12 @@ static char webJumpKey;
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)   return @"密码信息";
+    if (section == 0)
+    {
+        AddPWInfo * info = _dataArray[0][0];
+        if (!info.editTime)     return @"密码信息";
+        return [NSString stringWithFormat:@"%@时间：%@", info.isEdit ? @"编辑" : @"创建", info.editTime];
+    }
     return nil;
 }
 

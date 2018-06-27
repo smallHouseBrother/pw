@@ -44,6 +44,7 @@
 
 #define Screen_Scale [UIScreen mainScreen].scale
 
+#define Encrypt_Iv     @"16-Bytes--String"
 #define Encode_key     @"e10adc3949ba59abbe56e057f20f883e"
 
 #warning here key and 分享urlScheme
